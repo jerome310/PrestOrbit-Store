@@ -1,1 +1,22 @@
-Hello World
+<style>
+    .rotate-bg::before {
+        content: "";
+        background-image: url('header-image.jpg');
+        transform: rotate(270deg);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+</style>
+
+<header>
+    <div class="overflow-hidden h-full w-full relative">
+        <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{ 'header-image.jpg' |  asset_url }}"
+            alt="Header Background Image" style="transform: rotate(270deg);">
+        <!-- Your content here -->
+    </div>
+
+</header>
