@@ -1,22 +1,26 @@
-<style>
-    .rotate-bg::before {
-        content: "";
-        background-image: url('header-image.jpg');
-        transform: rotate(270deg);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-</style>
-
 <header>
-    <div class="overflow-hidden h-full w-full relative">
-        <img class="absolute top-0 left-0 w-full h-full object-cover" src="{{ 'header-image.jpg' |  asset_url }}"
-            alt="Header Background Image" style="transform: rotate(270deg);">
-        <!-- Your content here -->
+<div>
+    {% comment %} Background Image {% endcomment %}
+    <img class="w-full h-full" src="{{ 'header-image-rotate.jpg' |  asset_url }}" alt="Header Background Image">
+    {% comment %} Navbar Mobile Section {% endcomment %}
+    <div class="absolute top-0 flex items-center justify-between px-6 w-full mx-auto z-30 pt-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
+            class="w-7 h-7">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <h1 class="text-white pl-6">PrestOrbit</h1>
+        {% comment %} Left Icons {% endcomment %}
+        <div class="flex items-center">
+            <div class="">
+                <img class="w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
+            </div>
+            <div class="">
+                <img class="w-6 h-6 mr-3" src="{{ 'search-white.png' |  asset_url }}" alt="search icon">
+            </div>
+            <div class="">
+                <img class="w-6 h-6" src="{{ 'shopping-cart-white.png' |  asset_url }}" alt="shopping cart icon">
+            </div>
+        </div>
     </div>
-
+</div>
 </header>
