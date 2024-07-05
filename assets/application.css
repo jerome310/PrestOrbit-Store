@@ -595,6 +595,14 @@ video {
   margin-top: 0.75rem;
 }
 
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -613,6 +621,10 @@ video {
 
 .h-\[40vh\] {
   height: 40vh;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-6 {
@@ -646,6 +658,14 @@ video {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .object-contain {

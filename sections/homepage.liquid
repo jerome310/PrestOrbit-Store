@@ -5,10 +5,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @media (max-width: 400px) {
+    /* logo smaller */
+    .logo_smaller {
+       
+    }
     /* Logo */
     .logo {
+       
        margin-left: 0;
     }
+
 }
 </style>
 
@@ -25,9 +31,12 @@
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         {% comment %} Logo Section {% endcomment %}
-        <div class="logo ml-16">
-            <img src="{{ 'logo.png' |  asset_url }}" alt="">
+        <div class="">
+            <img class="logo_smaller" src="{{ 'logo-smaller.png' |  asset_url }}" alt="">
         </div>
+        {% comment %} <div class="ml-16">
+            <img class="logo" src="{{ 'logo_smaller.png' |  asset_url }}" alt="">
+        </div> {% endcomment %}
         {% comment %} Left Icons {% endcomment %}
         <div class="flex items-center">
             <img class="w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
