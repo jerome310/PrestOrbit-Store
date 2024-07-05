@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 @media (max-width: 400px) {
+.mobile-container {
+    padding: 24px 6px 0 !important;
+}
     /* logo smaller */
     .logo_smaller {
        
@@ -25,17 +28,17 @@
         alt="Header Background Image">
 
     {% comment %} Navbar Mobile Section {% endcomment %}
-    <div class="absolute top-0 flex items-center justify-between px-6 w-full mx-auto z-30 pt-6">
+    <div class="mobile-container absolute top-0 flex items-center justify-between px-6 w-full mx-auto z-30 pt-6">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
             class="w-7 h-7">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         {% comment %} Logo Section {% endcomment %}
-        <div class="">
+        <div class="sm:block md:hidden">
             <img class="logo_smaller" src="{{ 'logo-smaller.png' |  asset_url }}" alt="">
         </div>
         {% comment %} <div class="ml-16">
-            <img class="logo" src="{{ 'logo_smaller.png' |  asset_url }}" alt="">
+            <img class="logo md:block" src="{{ 'logo_smaller.png' |  asset_url }}" alt="">
         </div> {% endcomment %}
         {% comment %} Left Icons {% endcomment %}
         <div class="flex items-center">
