@@ -6,9 +6,9 @@
 </style>
 
 <header>
-<div class="relative h-screen w-screen">
+<div class="relative h-[40vh] md:h-screen w-full md:w-screen">
     {% comment %} Background Image {% endcomment %}
-    <img class="absolute w-full h-full" src="{{ 'header-image-rotate.jpg' |  asset_url }}"
+    <img class="absolute top-0 w-full object-contain" src="{{ 'header-image-rotate.jpg' |  asset_url }}"
         alt="Header Background Image">
 
     {% comment %} Navbar Mobile Section {% endcomment %}
@@ -31,9 +31,9 @@
 
     {% comment %} Header Center Text {% endcomment %}
     <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-30">
-        <h2 class="font-worksans pb-6 text-xl">Fresh, relaxed and color rich attire</h2>
-        <h1 class="font-bold pb-6 text-2xl">Find your Vibe!</h1>
-        <a href="" class="bg-black py-3 px-3">Shop Now</a>
+        <h2 class="font-worksans pt-9 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">Fresh, relaxed and color rich attire</h2>
+        <h1 class="font-bold mt-0 pt-3 pb-3 md:py-5 text-2xl md:text-4xl">Find your Vibe!</h1>
+        <a href="" class="bg-black py-3 px-3 mt-3">Shop Now</a>
     </div>
 </div>
 
