@@ -6,18 +6,24 @@
 
 @media (max-width: 400px) {
 .mobile-container {
-    padding: 24px 6px 0 !important;
+    width: 100%;
 }
-    /* logo smaller */
-    .logo_smaller {
-       
-    }
-    /* Logo */
-    .logo {
-       
-       margin-left: 0;
-    }
-
+.logo_smaller_container {
+    width: 92%;
+    display: flex;
+    justify-content: center;
+    margin-left: 25px;
+}
+/* logo smaller */
+.logo_smaller {
+    margin-left: 0%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.icons {
+    margin-right: 0px;
+}
 }
 </style>
 
@@ -34,17 +40,17 @@
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
         {% comment %} Logo Section {% endcomment %}
-        <div class="sm:block md:hidden">
-            <img class="logo_smaller" src="{{ 'logo-smaller.png' |  asset_url }}" alt="">
+        <div class="logo_smaller_container sm:block md:hidden">
+            <img class="logo_smaller" src="{{ 'logo-smaller.png' |  asset_url }}" alt="prestorbit logo">
         </div>
         {% comment %} <div class="ml-16">
             <img class="logo md:block" src="{{ 'logo_smaller.png' |  asset_url }}" alt="">
         </div> {% endcomment %}
         {% comment %} Left Icons {% endcomment %}
         <div class="flex items-center">
-            <img class="w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
-            <img class="w-6 h-6 mr-3" src="{{ 'search-white.png' |  asset_url }}" alt="search icon">
-            <img class="w-6 h-6" src="{{ 'shopping-cart-white.png' |  asset_url }}" alt="shopping cart icon">
+            <img class="icons w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
+            <img class="icons w-6 h-6 mr-3" src="{{ 'search-white.png' |  asset_url }}" alt="search icon">
+            <img class="icons w-6 h-6" src="{{ 'shopping-cart-white.png' |  asset_url }}" alt="shopping cart icon">
         </div>
     </div>
 
