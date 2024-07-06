@@ -1,95 +1,105 @@
 <style>
-/* Logo Font */
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-/* Body Font */
-@import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    /* Logo Font */
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+    /* Body Font */
+    @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Super Older smaller phone screen size */
-@media (max-width: 320px) {
-   .fresh-text {
-    padding-top: 50px;
-    font-size: 16px;
-   }
-   .find-text {
-    padding: 0;
-    font-size: 20px;
-   }
-   .shop-now-button {
-    margin-top: 6px;
-    padding: 6px 9px;
-   }
-}
+    /* Super Older smaller phone screen size */
+    @media (max-width: 320px) {
+        .fresh-text {
+            padding-top: 50px;
+            font-size: 16px;
+        }
 
-/* Super Older bigger phone screen size */
-@media (min-width: 360px) {
-   .fresh-text {
-    padding-top: 50px;
-   }
-   .find-text {
-    padding: 0;
-   }
-}
+        .find-text {
+            padding: 0;
+            font-size: 20px;
+        }
 
-/* More Current Mobile Phone screen size */
-@media (max-width: 450px) {
-.mobile-container {
-    width: 100%;
-}
-.logo_smaller_container {
-    width: 92%;
-    display: flex;
-    justify-content: center;
-    margin-left: 25px;
-}
-/* logo smaller */
-.logo_smaller {
-    width: 40%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-.icons {
-    margin-right: 0px;
-}
-.header-text-container {
-    bottom: 30%;
-}
-}
+        .shop-now-button {
+            margin-top: 6px;
+            padding: 6px 9px;
+        }
+    }
+
+    /* Super Older bigger phone screen size */
+    @media (min-width: 360px) {
+        .fresh-text {
+            padding-top: 50px;
+        }
+
+        .find-text {
+            padding: 0;
+        }
+    }
+
+    /* More Current Mobile Phone screen size */
+    @media (max-width: 450px) {
+        .mobile-container {
+            width: 100%;
+            padding: 24px 24px 0;
+        }
+
+        .logo_smaller_container {
+            width: 92%;
+            display: flex;
+            justify-content: center;
+            margin-left: 25px;
+        }
+
+        /* logo smaller */
+        .logo_smaller {
+            width: 40%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .icons {
+            margin-right: 0px;
+        }
+
+        .header-text-container {
+            bottom: 30%;
+        }
+    }
 </style>
 
 <header>
-<div class="relative h-[40vh] md:h-screen w-full md:w-screen">
-    {% comment %} Background Image {% endcomment %}
-    <img class="absolute top-0 w-full object-contain" src="{{ 'header-image-rotate.jpg' |  asset_url }}"
-        alt="Header Background Image">
+    <div class="relative h-[40vh] md:h-screen w-full md:w-screen">
+        {% comment %} Background Image {% endcomment %}
+        <img class="absolute top-0 w-full object-contain" src="{{ 'header-image-rotate.jpg' |  asset_url }}"
+            alt="Header Background Image">
 
-    {% comment %} Navbar Mobile Section {% endcomment %}
-    <div class="mobile-container absolute top-0 flex items-center justify-between px-6 w-full mx-auto z-30 pt-6">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
-            class="w-7 h-7">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-        {% comment %} Logo Section {% endcomment %}
-        <div class="logo_smaller_container sm:block md:hidden">
-            <img class="logo_smaller" src="{{ 'logo-smaller.png' |  asset_url }}" alt="prestorbit logo">
+        {% comment %} Navbar Mobile Section {% endcomment %}
+        <div class="mobile-container absolute top-0 flex items-center justify-between px-9 w-full mx-auto z-30 pt-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
+                class="w-7 h-7">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            {% comment %} Logo Section {% endcomment %}
+            <div class="logo_smaller_container">
+                <img class="logo_smaller min-[451px]:hidden" src="{{ 'logo-smaller.png' |  asset_url }}" alt="prestorbit logo">
+            </div>
+            <div class="max-[499px]:hidden min-[500px]:block w-11/12 flex justify-center ml-9">
+                <img class="w-2/4 sm:w-44 mx-auto" src="{{ 'logo.png' |  asset_url }}" alt="prestorbit logo">
+            </div>
+            {% comment %} Left Icons {% endcomment %}
+            <div class="flex items-center">
+                <img class="icons w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
+                <img class="icons w-6 h-6 mr-3" src="{{ 'search-white.png' |  asset_url }}" alt="search icon">
+                <img class="icons w-6 h-6" src="{{ 'shopping-cart-white.png' |  asset_url }}" alt="shopping cart icon">
+            </div>
         </div>
-        {% comment %} <div class="ml-16">
-            <img class="logo md:block" src="{{ 'logo_smaller.png' |  asset_url }}" alt="">
-        </div> {% endcomment %}
-        {% comment %} Left Icons {% endcomment %}
-        <div class="flex items-center">
-            <img class="icons w-6 h-6 mr-3" src="{{ 'person-white.png' |  asset_url }}" alt="customer icon">
-            <img class="icons w-6 h-6 mr-3" src="{{ 'search-white.png' |  asset_url }}" alt="search icon">
-            <img class="icons w-6 h-6" src="{{ 'shopping-cart-white.png' |  asset_url }}" alt="shopping cart icon">
+
+        {% comment %} Header Center Text {% endcomment %}
+        <div
+            class="header-text-container absolute top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center text-white z-30">
+            <h2 class="fresh-text font-worksans pt-9 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">Fresh, relaxed and color
+                rich attire</h2>
+            <h1 class="find-text font-bold mt-0 pt-3 pb-3 md:py-5 text-2xl md:text-4xl">Find your Vibe!</h1>
+            <a href="" class="shop-now-button bg-black py-3 px-3 mt-3">Shop Now</a>
         </div>
     </div>
-
-    {% comment %} Header Center Text {% endcomment %}
-    <div class="header-text-container absolute top-0 right-0 bottom-0 left-0 flex flex-col items-center justify-center text-white z-30">
-        <h2 class="fresh-text font-worksans pt-9 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">Fresh, relaxed and color rich attire</h2>
-        <h1 class="find-text font-bold mt-0 pt-3 pb-3 md:py-5 text-2xl md:text-4xl">Find your Vibe!</h1>
-        <a href="" class="shop-now-button bg-black py-3 px-3 mt-3">Shop Now</a>
-    </div>
-</div>
 
 </header>
