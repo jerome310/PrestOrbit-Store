@@ -12,6 +12,8 @@
   <!-- Header hook for plugins -->
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
+  {% comment %} Alpine Script {% endcomment %}
+  <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
 <body>
