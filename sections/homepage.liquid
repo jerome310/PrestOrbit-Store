@@ -2,7 +2,7 @@
     <p class="text-center">&#128075;Welcome to Ariel Cameron Leather, the home of handmade leather goods &#128512;</p>
 </div>
 
-<div class="absolute md:top-[9%] w-full h-2/6 md:h-full object-contain bg-cover bg-center z-10"
+<div class="absolute md:top-[8%] w-full h-2/6 md:h-full object-contain bg-cover bg-center z-10"
     style="background-image: url('{{ 'header-image-rotate.jpg' | asset_url }}');">
 <!-- Create a navbar slider with a hamburger icon -->
 <div class="z-30 flex flex-col max-w-screen-lg mx-auto pt-5" x-data="{open: false, searchBarButtonOpen: false}">
@@ -28,7 +28,7 @@
         <div class="text-center">
             <a href="{{ shop.url }}">
                 {% if section.settings.image == blank %}
-                <img class="ml-[25px] md:ml-0 w-[100px] h-[17px] md:w-[150px] md:h-[25px]"
+                <img class="max-[490px]:ml-[55px] ml-[75px] md:ml-0 w-[100px] h-[17px] md:w-[150px] md:h-[25px]"
                     src="{{ 'logo.png' |  asset_url }}" alt="My company logo">
                 {% else %}
                 <img class="w-[150px] h-[150px] md:w-[175px] md:h-[175px]"
@@ -42,10 +42,10 @@
         </div>
         <div class="flex md:block text-[#2E2D34] md:hidden">
             <!-- Mobile Search icon -->
-            <div class="pr-4">
+            <div class="max-[490px]:pr-2 pr-4">
                 {% render 'icon-search' %}
             </div>
-            <div class="pr-4">
+            <div class="max-[490px]:pr-2 pr-4">
                 <!-- Shopping icon -->
                 {% render 'icon-cart' %}
             </div>
@@ -53,6 +53,15 @@
                 <!-- Shopping icon -->
                 {% render 'icon-customer' %}
             </div>
+        </div>
+
+        <!-- Header Center Text -->
+        <div
+            class="header-text-container text-center md:flex md:flex-col md:justify-center md:items-center fixed top-[5%] md:top-0 right-0 bottom-0 left-0 text-white z-30">
+            <h2 class="fresh-text font-worksans pt-10 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">Fresh, relaxed and color
+                rich attire</h2>
+            <h1 class="find-text font-bold mt-0 pt-1 pb-5 md:py-5 text-2xl md:text-4xl">Find your Vibe!</h1>
+            <a href="" class="shop-now-button bg-black py-2 md:py-4 px-3">Shop Now</a>
         </div>
 
     </div>
