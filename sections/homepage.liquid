@@ -2,8 +2,13 @@
     <p class="text-center">&#128075;Welcome to Ariel Cameron Leather, the home of handmade leather goods &#128512;</p>
 </div>
 
+{% if section.settings.background_image == blank %}
 <div class="absolute md:top-[73px] w-full h-2/6 md:h-full object-contain bg-cover bg-center z-10"
     style="background-image: url('{{ 'header-image-rotate.jpg' | asset_url }}');">
+    {% else %}
+    <div class="absolute md:top-[73px] w-full h-2/6 md:h-full object-contain bg-cover bg-center z-10"
+        style="background-image: url('{{ section.settings.background_image | img_url: 'master' }}');">
+    {% endif %}
 <!-- Create a navbar slider with a hamburger icon -->
 <div class="z-30 flex flex-col mx-auto pt-5" x-data="{open: false, searchBarButtonOpen: false}">
     <!-- Navbar -->
@@ -76,10 +81,10 @@
         <div x-data="{ show: false }" x-init="setTimeout(() => show = true, 1000)"
             class="header-text-container text-center md:flex md:flex-col md:justify-center md:items-center fixed top-[12%] md:top-[30%] lg:top-0 right-0 bottom-0 left-0 text-white z-30 transition-all duration-1000 opacity-0"
             :class="{'opacity-100': show}">
-            <h2 class="fresh-text font-worksans pt-0 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">Fresh, relaxed and color rich
-                attire</h2>
-            <h1 class="find-text font-bold mt-0 pt-1 pb-5 md:py-5 text-2xl md:text-4xl">Find your Vibe!</h1>
-            <a href="" class="shop-now-button bg-black py-2 md:py-3 px-3 md:px-4">Shop Now</a>
+            <h2 class="fresh-text font-worksans pt-0 pb-0 md:pt-6 md:pb-0 text-xl md:text-3xl">{{section.settings.header_title}}</h2>
+            <h1 class="find-text font-bold mt-0 pt-1 pb-5 md:py-5 text-2xl md:text-4xl">{{section.settings.header_bold_text}}</h1>
+            <a href="" class="shop-now-button py-2 md:py-3 px-3 md:px-4" style="background-color: {{ section.settings.shop_now_button }};">Shop Now</a>
+
         </div>
 
     </div>
@@ -130,13 +135,37 @@
 
 {% schema %}
 {
-"name": "Logo",
+"name": "Header Section",
 "settings": [
 {
 "type": "image_picker",
 "id": "image",
-"label": "Image"
+"label": "Logo Image"
+},
+{
+"type": "image_picker",
+"id": "background_image",
+"label": "Background Image"
+},
+{
+"type": "text",
+"id": "header_title",
+"label": "Heading Text",
+"default": "Fresh, relaxed and color rich attire"
+},
+{
+"type": "text",
+"id": "header_bold_text",
+"label": "Heading Second Text",
+"default": "Find your Vibe!"
+},
+{
+"type": "color",
+"id": "shop_now_button",
+"label": "Button Color Picker",
+"default": "#000000"
 }
 ]
 }
 {% endschema %}
+
