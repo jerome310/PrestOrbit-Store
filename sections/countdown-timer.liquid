@@ -1,0 +1,19 @@
+<body style="font-family: {{ section.settings.font_style.family }};">
+    <div class="hidden md:block py-6 px-10 bg-gradient-to-r from-[#feb82b]/50 via-[#e561a1]/50 to-[#feb82b]/50">
+        <p class="text-center">👋Welcome to Ariel Cameron Leather, the home of handmade leather goods 😀</p>
+    </div>
+</body>
+
+{% schema %}
+{
+"name": "Typography",
+"settings": [
+{
+"type": "font_picker",
+"id": "font_style",
+"label": "Main font",
+"default": "helvetica_n4"
+}
+]
+}
+{% endschema %}
