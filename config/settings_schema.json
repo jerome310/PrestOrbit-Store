@@ -12,7 +12,7 @@
     "settings": [
       {
         "type": "font_picker",
-        "id": "font_style",
+        "id": "body_font",
         "label": "Main font",
         "default": "helvetica_n4"
       }
