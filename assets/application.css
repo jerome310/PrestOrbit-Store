@@ -1029,16 +1029,8 @@ video {
   text-decoration-line: underline;
 }
 
-.no-underline {
-  text-decoration-line: none;
-}
-
 .decoration-1 {
   text-decoration-thickness: 1px;
-}
-
-.decoration-2 {
-  text-decoration-thickness: 2px;
 }
 
 .underline-offset-4 {
@@ -1099,10 +1091,6 @@ video {
 
 .hover\:decoration-4:hover {
   text-decoration-thickness: 4px;
-}
-
-.hover\:decoration-2:hover {
-  text-decoration-thickness: 2px;
 }
 
 .focus\:outline-none:focus {
