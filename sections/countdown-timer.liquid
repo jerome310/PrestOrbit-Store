@@ -1,19 +1,48 @@
-<body style="font-family: {{ section.settings.font_style.family }};">
-    <div class="hidden md:block py-6 px-10 bg-gradient-to-r from-[#feb82b]/50 via-[#e561a1]/50 to-[#feb82b]/50">
-        <p class="text-center">👋Welcome to Ariel Cameron Leather, the home of handmade leather goods 😀</p>
+<div class="hidden md:flex items-center justify-between py-6 px-6 bg-black text-white">
+    <div class="flex">
+        <div class="pr-2">
+            <p>HUGE DISCOUNTS UP TO 40% OFF</p>
+        </div>
+        <div class="pl-2">
+            <a href="" class="underline hover:decoration-4">SHOP NOW</a>
+        </div>
     </div>
-</body>
+    <div>
+        <p class="countdown">99 DAY : 13 HRS : 09 MIN : 49 SEC</p>
+    </div>
+</div>
 
-{% schema %}
-{
-"name": "Typography",
-"settings": [
-{
-"type": "font_picker",
-"id": "font_style",
-"label": "Main font",
-"default": "helvetica_n4"
-}
-]
-}
-{% endschema %}
+<script>
+    // Get the countdown element
+    var countdown = document.querySelector('.countdown');
+
+    // Function to update countdown
+    function updateCountdown() {
+        // Get the current countdown values
+        var time = countdown.innerHTML.split(' : ');
+
+        // Convert to seconds
+        var totalSeconds = parseInt(time[0]) * 24 * 60 * 60 // days to seconds
+            + parseInt(time[1]) * 60 * 60 // hours to seconds
+            + parseInt(time[2]) * 60 // minutes to seconds
+            + parseInt(time[3]); // seconds
+
+        // Decrease total seconds
+        totalSeconds--;
+
+        // Convert seconds back to days, hours, minutes, and seconds
+        var days = Math.floor(totalSeconds / (24 * 60 * 60));
+        totalSeconds %= 24 * 60 * 60;
+        var hours = Math.floor(totalSeconds / (60 * 60));
+        totalSeconds %= 60 * 60;
+        var minutes = Math.floor(totalSeconds / 60);
+        var seconds = totalSeconds % 60;
+
+        // Update countdown element
+        countdown.innerHTML = days + ' DAY : ' + hours + ' HRS : ' + minutes + ' MIN : ' + seconds + ' SEC';
+    }
+
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+
+</script>
