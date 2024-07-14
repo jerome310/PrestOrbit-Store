@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@shopify/cli": "^3.60.0",
+    "@shopify/theme": "^3.58.2"
+  },
+  "name": "prestorbit-store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

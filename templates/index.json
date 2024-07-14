@@ -1,0 +1,13 @@
+{
+    "sections": {
+        "countdown-timer": {
+            "type": "countdown-timer",
+            "settings": {}
+        },
+        "homepage": {
+            "type": "homepage",
+            "settings": {}
+        }
+    },
+    "order": ["countdown-timer","homepage"]
+}
