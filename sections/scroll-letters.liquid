@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbar */
+        }
+
+        .scrolling-text {
+            position: absolute;
+            animation: scroll 10s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="scrollingText" class="text-3xl absolute bottom-2/4 md:bottom-0 scrolling-text">Here is the text that's going
+        to be scrolling around the screen</h1>
+
+    <script>
+        const text = document.getElementById('scrollingText');
+
+        function scrollText() {
+            const textRect = text.getBoundingClientRect();
+            if (textRect.right < 0) {
+                // If the text has completely moved off the left edge of the screen, reset its position to the right edge
+                text.style.transform = 'translateX(100%)';
+            } else {
+                // Otherwise, move the text a little bit to the left
+                text.style.transform = 'translateX(' + (textRect.left - 2) + 'px)';
+            }
+            requestAnimationFrame(scrollText);
+        }
+
+        scrollText();
+    </script>
+</body>
+
+</html>

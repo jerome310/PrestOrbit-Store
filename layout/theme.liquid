@@ -9,13 +9,21 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }}
   <!-- Header hook for plugins -->
+  {% comment %} <style>
+  {{ settings.body_font | font_face }}
+
+  html {
+    font-family: {{settings.body_font.family}}
+  }
+  </style> {% endcomment %}
+  {% comment %} {{ 'custom.css' | asset_url | stylesheet_tag }} {% endcomment %}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
   {% comment %} Alpine Script {% endcomment %}
   <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
-<body class="bg-red-900">
+<body>
   <main role="main">
     {{ content_for_layout }}
   </main>
