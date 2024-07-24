@@ -9,10 +9,12 @@
         }
 
         .scrolling-text {
-            position: absolute;
-            animation: scroll 10s linear infinite;
-            white-space: nowrap;
-        }
+    position: absolute;
+    animation: scroll 30s linear infinite;
+    white-space: nowrap;
+    transform: translateX(100%); /* Start from the right edge of the screen */
+}
+
 
         @keyframes scroll {
             0% {
@@ -27,8 +29,13 @@
 </head>
 
 <body>
-    <h1 id="scrollingText" class="text-3xl absolute bottom-2/4 md:bottom-0 scrolling-text">Here is the text that's going
-        to be scrolling around the screen</h1>
+    <h1 id="scrollingText" class="absolute bottom-2/4 md:bottom-0 scrolling-text"><span class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-yellow-500 to-[#feb82b]/50">Here is the text</span>
+    
+    <span class="text-white text-6xl font-bold" style="text-shadow: -1px 0 grey, 0 1px grey, 1px 0 grey, 0 -1px grey;"> that's going to be
+    </span>
+    
+    <span class="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-yellow-500 to-[#feb82b]/50">scrolling around the screen</span>
+    </h1>
 
     <script>
         const text = document.getElementById('scrollingText');
