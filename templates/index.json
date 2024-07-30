@@ -1,17 +1,21 @@
 {
     "sections": {
-        "countdown-timer": {
-            "type": "countdown-timer",
-            "settings": {}
-        },
-        "homepage": {
-            "type": "homepage",
-            "settings": {}
-        },
-        "scroll-letters": {
-            "type": "scroll-letters",
-            "settings": {}
-        }
+      "countdown-timer": {
+        "type": "countdown-timer",
+        "settings": {}
+      },
+      "homepage": {
+        "type": "homepage",
+        "settings": {}
+      },
+      "scroll-letters": {
+        "type": "scroll-letters",
+        "settings": {}
+      },
+      "kids-products": {
+      "type": "kids-products",
+      "settings": {}
+      }
     },
-    "order": ["countdown-timer","homepage","scroll-letters"]
+    "order": ["countdown-timer","homepage","scroll-letters","kids-products"]
 }
