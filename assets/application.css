@@ -622,10 +622,6 @@ video {
   z-index: 50;
 }
 
-.m-auto {
-  margin: auto;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -653,10 +649,6 @@ video {
 
 .mt-5 {
   margin-top: 1.25rem;
-}
-
-.mr-auto {
-  margin-right: auto;
 }
 
 .ml-0 {
@@ -732,12 +724,8 @@ video {
   width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
-}
-
-.w-1\/4 {
-  width: 25%;
+.w-\[28\%\] {
+  width: 28%;
 }
 
 .flex-auto {
@@ -989,14 +977,6 @@ video {
   padding-top: 2rem;
 }
 
-.pr-10 {
-  padding-right: 2.5rem;
-}
-
-.pr-20 {
-  padding-right: 5rem;
-}
-
 .text-center {
   text-align: center;
 }
@@ -1196,6 +1176,42 @@ video {
     width: 150px;
   }
 
+  .md\:w-\[28\%\] {
+    width: 28%;
+  }
+
+  .md\:w-\[2\%\] {
+    width: 2%;
+  }
+
+  .md\:w-\[3\%\] {
+    width: 3%;
+  }
+
+  .md\:w-\[32\%\] {
+    width: 32%;
+  }
+
+  .md\:w-\[323\%\] {
+    width: 323%;
+  }
+
+  .md\:w-\[\%\] {
+    width: %;
+  }
+
+  .md\:w-\[20\%\] {
+    width: 20%;
+  }
+
+  .md\:w-\[10\%\] {
+    width: 10%;
+  }
+
+  .md\:w-\[0\%\] {
+    width: 0%;
+  }
+
   .md\:flex-col {
     flex-direction: column;
   }
@@ -1240,6 +1256,22 @@ video {
     padding-top: 1.5rem;
   }
 
+  .md\:pt-10 {
+    padding-top: 2.5rem;
+  }
+
+  .md\:pt-1 {
+    padding-top: 0.25rem;
+  }
+
+  .md\:pt-16 {
+    padding-top: 4rem;
+  }
+
+  .md\:pt-12 {
+    padding-top: 3rem;
+  }
+
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -1256,10 +1288,6 @@ video {
     top: 0px;
   }
 
-  .lg\:ml-0 {
-    margin-left: 0px;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -1268,55 +1296,29 @@ video {
     display: none;
   }
 
-  .lg\:w-1\/4 {
-    width: 25%;
-  }
-
-  .lg\:w-1\/5 {
-    width: 20%;
-  }
-
-  .lg\:w-1\/3 {
-    width: 33.333333%;
-  }
-
-  .lg\:w-1 {
-    width: 0.25rem;
-  }
-
-  .lg\:w-\[\] {
-    width: ;
-  }
-
-  .lg\:w-\[30\] {
-    width: 30;
-  }
-
-  .lg\:w-\[30\%\] {
-    width: 30%;
-  }
-
-  .lg\:w-\[3\%\] {
-    width: 3%;
-  }
-
-  .lg\:w-\[32\%\] {
-    width: 32%;
-  }
-
-  .lg\:w-\[\%\] {
-    width: %;
-  }
-
-  .lg\:w-\[2\%\] {
-    width: 2%;
-  }
-
   .lg\:w-\[28\%\] {
     width: 28%;
   }
 
   .lg\:justify-normal {
     justify-content: normal;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:ml-0 {
+    margin-left: 0px;
+  }
+
+  .xl\:flex {
+    display: flex;
+  }
+
+  .xl\:hidden {
+    display: none;
+  }
+
+  .xl\:w-\[28\%\] {
+    width: 28%;
   }
 }
