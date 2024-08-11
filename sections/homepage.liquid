@@ -23,7 +23,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
         </button>
-        <div class="bg-white xl:hidden z-40 absolute top-0 left-0 w-10/12 py-4 h-screen" x-show="open"
+        <div id="navData" class="bg-white xl:hidden z-40 absolute top-0 left-0 w-10/12 py-4 h-screen" x-show="open"
             x-transition:enter="transition ease-out duration-300" x-transition:enter-start="transform -translate-x-full"
             x-transition:enter-end="transform translate-x-0" x-transition:leave="transition ease-in duration-300"
             x-transition:leave-start="transform translate-x-0" x-transition:leave-end="transform -translate-x-full"
@@ -36,18 +36,23 @@
                 </svg>
             </div>
             <!-- Mobile Links -->
-            <div class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50">
-                {% for link in linklists.main-menu.links %}
-                <a class="font-normal text-black hover:underline underline-offset-4 decoration-1 block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform"
-                    x-show="open" x-transition:enter="transition-opacity duration-500 delay-200"
-                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" href="{{ link.url }}">
-                    {{ link.title }}
-                </a>
-                {% endfor %}
+            <div id="removeContainer" class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <button id="subButton"
+                            class="font-normal text-black block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform">
+                            Woman
+                        </button>
+                    </div>
+                    <div>
+                        <button id="subButton">
+                            <img class="w-7 mr-6" src="{{ 'dropdown-arrow.png' | asset_url }}" alt="dropdown arrow">
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="flex px-6 pt-8 pb-6 z-50 transition-all duration-500 ease-in-out transform" x-show="open"
-                x-transition:enter="transition-opacity duration-500 delay-200" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100">
+            
+            <div id="removeContainer" class="flex px-6 pt-8 pb-6 z-50 transition-all duration-500 ease-in-out transform">
                 {% render 'social-media-twitter' %}
                 {% render 'social-media-facebook' %}
                 {% render 'social-media-pinterest' %}
@@ -57,6 +62,7 @@
             </div>
         </div>
     </div>
+    
 
 
         <!-- Desktop Navabar -->
@@ -140,6 +146,25 @@
 </div>
 </div>
 </div>
+
+<script>
+    document.querySelectorAll('#subButton').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                container.style.display = 'none';
+            });
+
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = 'Hello World';
+            messageDiv.className = 'font-bold text-lg text-center mt-4';
+
+            // Append the new div to the messageContainer
+            document.getElementById('messageContainer').appendChild(messageDiv);
+            // Create a new div element
+        });
+    });
+</script>
+
 
 {% schema %}
 {
