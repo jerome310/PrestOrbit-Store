@@ -30,8 +30,8 @@
             @click.away="open = false; document.body.classList.remove('overflow-hidden')">
             <div>
                 <svg @click="open = false; document.body.classList.remove('overflow-hidden')"
-                    class="h-6 w-6 text-black z-50 absolute top-4 right-4 cursor-pointer" x-show="open" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+                    class="h-6 w-6 text-black z-50 absolute top-4 right-4 cursor-pointer" x-show="open" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </div>
@@ -39,19 +39,19 @@
             <div id="removeContainer" class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50">
                 <div class="flex items-center justify-between">
                     <div>
-                        <button id="subButton"
+                        <button class="subButton"
                             class="font-normal text-black block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform">
                             Woman
                         </button>
                     </div>
                     <div>
-                        <button id="subButton">
-                            <img class="w-7 mr-6" src="{{ 'dropdown-arrow.png' | asset_url }}" alt="dropdown arrow">
+                        <button class="subButton">
+                            <img class="w-7 mr-6" src="{{ 'forward-arrow.png' | asset_url }}" alt="dropdown arrow">
                         </button>
                     </div>
                 </div>
             </div>
-            
+    
             <div id="removeContainer" class="flex px-6 pt-8 pb-6 z-50 transition-all duration-500 ease-in-out transform">
                 {% render 'social-media-twitter' %}
                 {% render 'social-media-facebook' %}
@@ -60,8 +60,11 @@
                 {% render 'social-media-tiktok' %}
                 {% render 'social-media-youtube' %}
             </div>
+
+            <div id="messageContainer"></div>
         </div>
     </div>
+
     
 
 
@@ -148,21 +151,30 @@
 </div>
 
 <script>
-    document.querySelectorAll('#subButton').forEach(button => {
-        button.addEventListener('click', function () {
-            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                container.style.display = 'none';
+     document.querySelectorAll('.subButton').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                    container.style.display = 'none';
+                });
+
+                const messageDiv = document.createElement('div');
+                const img = document.createElement('img');
+                img.src = "{{ 'back-arrow.png' | asset_url }}";
+                img.alt = "dropdown arrow";
+
+                // Apply vanilla CSS styles
+                img.style.width = '22px'; // w-7 (1.75rem = 28px)
+                img.style.position = 'relative';
+                img.style.left = '24px'; // Move the image 24px to the right
+                img.style.top = '5px'; // Move the image 24px to the right
+
+                messageDiv.appendChild(img);
+                
+
+                // Append the new div to the messageContainer
+                document.getElementById('messageContainer').appendChild(messageDiv);
             });
-
-            const messageDiv = document.createElement('div');
-            messageDiv.textContent = 'Hello World';
-            messageDiv.className = 'font-bold text-lg text-center mt-4';
-
-            // Append the new div to the messageContainer
-            document.getElementById('messageContainer').appendChild(messageDiv);
-            // Create a new div element
         });
-    });
 </script>
 
 
