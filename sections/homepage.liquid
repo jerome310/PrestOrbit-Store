@@ -151,31 +151,45 @@
 </div>
 
 <script>
-     document.querySelectorAll('.subButton').forEach(button => {
-            button.addEventListener('click', function () {
-                document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                    container.style.display = 'none';
-                });
-
-                const messageDiv = document.createElement('div');
-                const img = document.createElement('img');
-                img.src = "{{ 'back-arrow.png' | asset_url }}";
-                img.alt = "dropdown arrow";
-
-                // Apply vanilla CSS styles
-                img.style.width = '22px'; // w-7 (1.75rem = 28px)
-                img.style.position = 'relative';
-                img.style.left = '24px'; // Move the image 24px to the right
-                img.style.top = '5px'; // Move the image 24px to the right
-
-                messageDiv.appendChild(img);
-                
-
-                // Append the new div to the messageContainer
-                document.getElementById('messageContainer').appendChild(messageDiv);
+    document.querySelectorAll('.subButton').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                container.style.display = 'none';
             });
+
+            const messageDiv = document.createElement('div');
+            const img = document.createElement('img');
+            img.src = "{{ 'back-arrow.png' | asset_url }}";
+            img.alt = "dropdown arrow";
+
+            // Apply Flexbox styles to messageDiv
+            messageDiv.style.display = 'flex';
+            messageDiv.style.justifyContent = 'space-between';
+            messageDiv.style.alignItems = 'center'; // Align items vertically in the center
+            messageDiv.style.width = '55%'; // Set the width to 50%
+
+            // Apply vanilla CSS styles to the image
+            img.style.width = '22px'; // w-7 (1.75rem = 28px)
+            img.style.position = 'relative';
+            img.style.left = '10px';
+
+            messageDiv.appendChild(img);
+
+            // Create a text node with the word "Woman"
+            const textNode = document.createTextNode('Woman');
+            const textSpan = document.createElement('span');
+            textSpan.appendChild(textNode);
+            textSpan.style.fontSize = '22px'; // Set the font size to 22px
+            messageDiv.appendChild(textSpan);
+
+            // Append the new div to the messageContainer
+            document.getElementById('messageContainer').appendChild(messageDiv);
         });
+    });
 </script>
+
+
+
 
 
 {% schema %}
