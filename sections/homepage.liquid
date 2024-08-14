@@ -151,41 +151,131 @@
 </div>
 
 <script>
-    document.querySelectorAll('.subButton').forEach(button => {
+   document.querySelectorAll('.subButton').forEach(button => {
         button.addEventListener('click', function () {
             document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
                 container.style.display = 'none';
             });
 
-            const messageDiv = document.createElement('div');
-            const img = document.createElement('img');
-            img.src = "{{ 'back-arrow.png' | asset_url }}";
-            img.alt = "dropdown arrow";
+            // Check if messageDiv already exists
+            if (!document.getElementById('messageDiv')) {
+                const messageDiv = document.createElement('div');
+                messageDiv.id = 'messageDiv'; // Assign an ID to the messageDiv
+                const img = document.createElement('img');
+                img.src = "{{ 'back-arrow.png' | asset_url }}";
+                img.alt = "dropdown arrow";
 
-            // Apply Flexbox styles to messageDiv
-            messageDiv.style.display = 'flex';
-            messageDiv.style.justifyContent = 'space-between';
-            messageDiv.style.alignItems = 'center'; // Align items vertically in the center
-            messageDiv.style.width = '55%'; // Set the width to 50%
+                // Apply Flexbox styles to messageDiv
+                messageDiv.style.display = 'flex';
+                messageDiv.style.justifyContent = 'space-between';
+                messageDiv.style.alignItems = 'center'; // Align items vertically in the center
+                messageDiv.style.width = '55%'; // Set the width to 55%
 
-            // Apply vanilla CSS styles to the image
-            img.style.width = '22px'; // w-7 (1.75rem = 28px)
-            img.style.position = 'relative';
-            img.style.left = '10px';
+                // Apply vanilla CSS styles to the image
+                img.style.width = '22px'; // w-7 (1.75rem = 28px)
+                img.style.position = 'relative';
+                img.style.left = '10px';
+                img.style.cursor = 'pointer'; // Add cursor pointer
 
-            messageDiv.appendChild(img);
+                // Add click event listener to the image
+                img.addEventListener('click', function () {
+                    console.log('Image clicked');
+                    document.querySelectorAll('.subButton').forEach(subButton => {
+                        console.log('Bringing back subButton:', subButton);
+                        subButton.style.display = 'block';
+                    });
+                    document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                        container.style.display = 'flex';
+                    });
+                    messageDiv.style.display = 'none'; // Hide the messageDiv
+                });
 
-            // Create a text node with the word "Woman"
-            const textNode = document.createTextNode('Woman');
-            const textSpan = document.createElement('span');
-            textSpan.appendChild(textNode);
-            textSpan.style.fontSize = '22px'; // Set the font size to 22px
-            messageDiv.appendChild(textSpan);
+                messageDiv.appendChild(img);
 
-            // Append the new div to the messageContainer
-            document.getElementById('messageContainer').appendChild(messageDiv);
+                // Create a text node with the word "Woman"
+                const textNode = document.createTextNode('Woman');
+                const textSpan = document.createElement('span');
+                textSpan.appendChild(textNode);
+                textSpan.style.fontSize = '22px'; // Set the font size to 22px
+                messageDiv.appendChild(textSpan);
+
+                // Append the new div to the messageContainer
+                document.getElementById('messageContainer').appendChild(messageDiv);
+            }
         });
     });
+
+    // Add event listener to subButton to display messageDiv as flex
+    document.querySelectorAll('.subButton').forEach(button => {
+        button.addEventListener('click', function () {
+            document.querySelectorAll('#messageContainer > div').forEach(messageDiv => {
+                messageDiv.style.display = 'flex';
+            });
+        });
+    });
+
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //         // Display a particular parent navlink
+    //         var navContainer = document.getElementById('nav-container');
+    //         var specificLink = navLinks.find(link => link.title === "Woman"); // Replace "Home" with the actual parent link title
+    //         if (specificLink) {
+    //             var navItem = document.createElement('a');
+    //             navItem.href = specificLink.url;
+    //             navItem.textContent = specificLink.title;
+    //             navContainer.appendChild(navItem);
+    //         }
+
+    //         // Handle subButton click event
+    //         document.querySelectorAll('.subButton').forEach(button => {
+    //             button.addEventListener('click', function () {
+    //                 document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+    //                     container.style.display = 'none';
+    //                 });
+
+    //                 const messageDiv = document.createElement('div');
+    //                 const img = document.createElement('img');
+    //                 img.src = "{{ 'back-arrow.png' | asset_url }}";
+    //                 img.alt = "dropdown arrow";
+
+    //                 // Apply Flexbox styles to messageDiv
+    //                 messageDiv.style.display = 'flex';
+    //                 messageDiv.style.justifyContent = 'space-between';
+    //                 messageDiv.style.alignItems = 'center'; // Align items vertically in the center
+    //                 messageDiv.style.width = '55%'; // Set the width to 50%
+
+    //                 // Apply vanilla CSS styles to the image
+    //                 img.style.width = '22px'; // w-7 (1.75rem = 28px)
+    //                 img.style.position = 'relative';
+    //                 img.style.left = '10px';
+
+    //                 messageDiv.appendChild(img);
+
+    //                 // Find and display a specific sublink
+    //                 var parentLink = navLinks.find(link => link.title === "Woman"); // Replace with the actual parent link title
+    //                 if (parentLink && parentLink.sublinks) {
+    //                     var specificSublink = parentLink.sublinks.find(sublink => sublink.title === "Dresses"); // Replace with the actual sublink title
+    //                     if (specificSublink) {
+    //                         const textNode = document.createTextNode(specificSublink.title);
+    //                         const textSpan = document.createElement('span');
+    //                         textSpan.appendChild(textNode);
+    //                         textSpan.style.fontSize = '22px'; // Set the font size to 22px
+    //                         messageDiv.appendChild(textSpan);
+
+    //                         const sublinkDiv = document.createElement('div');
+    //                         const sublinkAnchor = document.createElement('a');
+    //                         sublinkAnchor.href = specificSublink.url;
+    //                         sublinkAnchor.textContent = specificSublink.title;
+    //                         sublinkDiv.appendChild(sublinkAnchor);
+    //                         document.getElementById('messageContainer').appendChild(sublinkDiv);
+    //                     }
+    //                 }
+
+    //                 // Append the new div to the messageContainer
+    //                 document.getElementById('messageContainer').appendChild(messageDiv);
+    //             });
+    //         });
+    //     });
 </script>
 
 
