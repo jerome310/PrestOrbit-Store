@@ -151,94 +151,93 @@
 </div>
 
 <script>
-   document.querySelectorAll('.subButton').forEach(button => {
-        button.addEventListener('click', function () {
-            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                container.style.display = 'none';
-            });
-
-            if (!document.getElementById('messageDiv')) {
-                // Create a div for the top section (Woman link and image)
-                const topSectionDiv = document.createElement('div');
-                topSectionDiv.id = 'topSectionDiv';
-
-                // Apply Flexbox styles to center the Woman link and image
-                topSectionDiv.style.display = 'flex';
-                topSectionDiv.style.justifyContent = 'center'; // Center content horizontally
-                topSectionDiv.style.alignItems = 'center'; // Align items vertically in the center
-                topSectionDiv.style.marginBottom = '20px'; // Space below the top section
-
-                // Create and style the image (next to the Woman link)
-                const img = document.createElement('img');
-                img.src = "{{ 'back-arrow.png' | asset_url }}";
-                img.alt = "dropdown arrow";
-                img.style.width = '22px';
-                img.style.cursor = 'pointer';
-                img.style.marginRight = '10px'; // Space between the image and the Woman link
-
-                img.addEventListener('click', function () {
-                    document.querySelectorAll('.subButton').forEach(subButton => {
-                        subButton.style.display = 'block';
-                    });
-                    document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                        container.style.display = 'flex';
-                    });
-                    document.getElementById('sublinkContainer').style.display = 'none'; // Hide the sublink container
+    document.querySelectorAll('.subButton').forEach(button => {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                    container.style.display = 'none';
                 });
 
-                // Create and style the Woman link (centered relative to the image)
-                const textNode = document.createTextNode('Woman');
-                const textSpan = document.createElement('span');
-                textSpan.appendChild(textNode);
-                textSpan.style.fontSize = '22px';
-                textSpan.style.fontWeight = 'bold';
+                if (!document.getElementById('messageDiv')) {
+                    // Create a div for the top section (Woman link and image)
+                    const topSectionDiv = document.createElement('div');
+                    topSectionDiv.id = 'topSectionDiv';
 
-                // Append the image and the Woman link to the top section div
-                topSectionDiv.appendChild(img);
-                topSectionDiv.appendChild(textSpan);
+                    // Apply Flexbox styles to the topSectionDiv
+                    topSectionDiv.style.display = 'flex';
+                    topSectionDiv.style.justifyContent = 'space-between'; // Align items to the start of the container
+                    topSectionDiv.style.alignItems = 'center'; // Align items vertically in the center
+                    topSectionDiv.style.width = '60%'; // Set the width to 60%
+                    topSectionDiv.style.marginBottom = '20px'; // Space below the top section
 
-                // Append the top section div to the page (e.g., inside the messageContainer)
-                document.getElementById('messageContainer').appendChild(topSectionDiv);
+                    // Create and style the image (positioned to the left)
+                    const img = document.createElement('img');
+                    img.src = "{{ 'back-arrow.png' | asset_url }}";
+                    img.alt = "dropdown arrow";
+                    img.style.width = '22px'; // Image width
+                    img.style.cursor = 'pointer'; // Pointer cursor
+                    img.style.marginLeft = '10px'; // Space between the image and the Woman link
 
-                // Create a new div to hold the sublink and paragraph (positioned below)
-                const sublinkDiv = document.createElement('div');
-                sublinkDiv.id = 'sublinkContainer';
-                sublinkDiv.style.backgroundColor = '#FFC0CB'; // Pink background for the entire sublink/paragraph div
-                sublinkDiv.style.padding = '10px'; // Padding inside the div
-                sublinkDiv.style.borderRadius = '5px'; // Rounded corners
-                sublinkDiv.style.marginTop = '50px'; // Space below the top section
+                    img.addEventListener('click', function () {
+                        document.querySelectorAll('.subButton').forEach(subButton => {
+                            subButton.style.display = 'block';
+                        });
+                        document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                            container.style.display = 'flex';
+                        });
+                        document.getElementById('sublinkContainer').style.display = 'none'; // Hide the sublink container
+                    });
 
-                // Create and style the Dress title link
-                const dressLink = document.createElement('a');
-                dressLink.href = "/collections/woman/dresses"; // Update with the actual URL
-                dressLink.textContent = 'Dresses';
-                dressLink.style.fontSize = '18px';
-                dressLink.style.fontWeight = 'bold';
-                dressLink.style.color = 'white'; // Text color
-                dressLink.style.display = 'block'; // Ensure it takes up full width of its container
+                    // Create and style the Woman link
+                    const textNode = document.createTextNode('Woman');
+                    const textSpan = document.createElement('span');
+                    textSpan.appendChild(textNode);
+                    textSpan.style.fontSize = '22px';
+                    textSpan.style.fontWeight = 'bold';
 
-                // Append the Dress link to the sublinkDiv
-                sublinkDiv.appendChild(dressLink);
+                    // Append the image and the Woman link to the top section div
+                    topSectionDiv.appendChild(img);
+                    topSectionDiv.appendChild(textSpan);
 
-                // Create and style the paragraph
-                const paragraph = document.createElement('p');
-                paragraph.textContent = 'From the playground to the classroom to family adventures, our kids’ clothing is designed and built to fit the needs of active children.';
-                paragraph.style.fontSize = '14px'; // Font size
-                paragraph.style.color = '#333'; // Darker text color
-                paragraph.style.marginTop = '10px'; // Space below Dress link
-                paragraph.style.lineHeight = '1.5'; // Improve readability
+                    // Append the top section div to the page (e.g., inside the messageContainer)
+                    document.getElementById('messageContainer').appendChild(topSectionDiv);
 
-                // Append the paragraph to the sublinkDiv
-                sublinkDiv.appendChild(paragraph);
+                    // Create a new div to hold the sublink and paragraph (positioned below)
+                    const sublinkDiv = document.createElement('div');
+                    sublinkDiv.id = 'sublinkContainer';
+                    sublinkDiv.style.backgroundColor = '#FFC0CB'; // Pink background for the entire sublink/paragraph div
+                    sublinkDiv.style.padding = '10px'; // Padding inside the div
+                    sublinkDiv.style.borderRadius = '5px'; // Rounded corners
+                    sublinkDiv.style.marginTop = '50px'; // Space below the top section
 
-                // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
-                document.getElementById('messageContainer').appendChild(sublinkDiv);
-            }
+                    // Create and style the Dress title link
+                    const dressLink = document.createElement('a');
+                    dressLink.href = "/collections/woman/dresses"; // Update with the actual URL
+                    dressLink.textContent = 'Dresses';
+                    dressLink.style.fontSize = '18px';
+                    dressLink.style.fontWeight = 'bold';
+                    dressLink.style.color = 'white'; // Text color
+                    dressLink.style.display = 'block'; // Ensure it takes up full width of its container
+
+                    // Append the Dress link to the sublinkDiv
+                    sublinkDiv.appendChild(dressLink);
+
+                    // Create and style the paragraph
+                    const paragraph = document.createElement('p');
+                    paragraph.textContent = 'From the playground to the classroom to family adventures, our kids’ clothing is designed and built to fit the needs of active children.';
+                    paragraph.style.fontSize = '14px'; // Font size
+                    paragraph.style.color = '#333'; // Darker text color
+                    paragraph.style.marginTop = '10px'; // Space below Dress link
+                    paragraph.style.lineHeight = '1.5'; // Improve readability
+
+                    // Append the paragraph to the sublinkDiv
+                    sublinkDiv.appendChild(paragraph);
+
+                    // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
+                    document.getElementById('messageContainer').appendChild(sublinkDiv);
+                }
+            });
         });
-    });
 
-
-    
 
 
     // document.querySelectorAll('.subButton').forEach(button => {
