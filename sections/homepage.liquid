@@ -153,10 +153,12 @@
 <script>
     document.querySelectorAll('.subButton').forEach(button => {
             button.addEventListener('click', function () {
+                // Hide all containers starting with "removeContainer"
                 document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
                     container.style.display = 'none';
                 });
 
+                // Ensure dynamic content is only created once
                 if (!document.getElementById('messageDiv')) {
                     // Create a div for the top section (Woman link and image)
                     const topSectionDiv = document.createElement('div');
@@ -164,27 +166,42 @@
 
                     // Apply Flexbox styles to the topSectionDiv
                     topSectionDiv.style.display = 'flex';
-                    topSectionDiv.style.justifyContent = 'space-between'; // Align items to the start of the container
-                    topSectionDiv.style.alignItems = 'center'; // Align items vertically in the center
-                    topSectionDiv.style.width = '60%'; // Set the width to 60%
-                    topSectionDiv.style.marginBottom = '20px'; // Space below the top section
+                    topSectionDiv.style.justifyContent = 'space-between';
+                    topSectionDiv.style.alignItems = 'center';
+                    topSectionDiv.style.width = '60%';
+                    topSectionDiv.style.marginBottom = '20px';
 
                     // Create and style the image (positioned to the left)
                     const img = document.createElement('img');
                     img.src = "{{ 'back-arrow.png' | asset_url }}";
                     img.alt = "dropdown arrow";
-                    img.style.width = '22px'; // Image width
-                    img.style.cursor = 'pointer'; // Pointer cursor
-                    img.style.marginLeft = '10px'; // Space between the image and the Woman link
+                    img.style.width = '22px';
+                    img.style.cursor = 'pointer';
+                    img.style.marginLeft = '10px';
 
+                    // Event listener to hide the dynamic content
                     img.addEventListener('click', function () {
+                        // Hide the dynamic content
+                        topSectionDiv.style.display = 'none';
+                        document.getElementById('sublinkContainer').style.display = 'none';
+
+                        // Restore visibility of the original elements
                         document.querySelectorAll('.subButton').forEach(subButton => {
                             subButton.style.display = 'block';
                         });
                         document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
                             container.style.display = 'flex';
                         });
-                        document.getElementById('sublinkContainer').style.display = 'none'; // Hide the sublink container
+
+                        // Ensure the dynamically created content does not interact with the navData container
+                        const messageContainer = document.getElementById('messageContainer');
+                        if (messageContainer.contains(topSectionDiv)) {
+                            messageContainer.removeChild(topSectionDiv);
+                        }
+                        const sublinkContainer = document.getElementById('sublinkContainer');
+                        if (messageContainer.contains(sublinkContainer)) {
+                            messageContainer.removeChild(sublinkContainer);
+                        }
                     });
 
                     // Create and style the Woman link
@@ -204,19 +221,19 @@
                     // Create a new div to hold the sublink and paragraph (positioned below)
                     const sublinkDiv = document.createElement('div');
                     sublinkDiv.id = 'sublinkContainer';
-                    sublinkDiv.style.backgroundColor = '#FFC0CB'; // Pink background for the entire sublink/paragraph div
-                    sublinkDiv.style.padding = '10px'; // Padding inside the div
-                    sublinkDiv.style.borderRadius = '5px'; // Rounded corners
-                    sublinkDiv.style.marginTop = '50px'; // Space below the top section
+                    sublinkDiv.style.backgroundColor = '#FFC0CB';
+                    sublinkDiv.style.padding = '10px';
+                    sublinkDiv.style.borderRadius = '5px';
+                    sublinkDiv.style.marginTop = '50px';
 
                     // Create and style the Dress title link
                     const dressLink = document.createElement('a');
-                    dressLink.href = "/collections/woman/dresses"; // Update with the actual URL
+                    dressLink.href = "/collections/woman/dresses";
                     dressLink.textContent = 'Dresses';
                     dressLink.style.fontSize = '18px';
                     dressLink.style.fontWeight = 'bold';
-                    dressLink.style.color = 'white'; // Text color
-                    dressLink.style.display = 'block'; // Ensure it takes up full width of its container
+                    dressLink.style.color = 'white';
+                    dressLink.style.display = 'block';
 
                     // Append the Dress link to the sublinkDiv
                     sublinkDiv.appendChild(dressLink);
@@ -224,19 +241,20 @@
                     // Create and style the paragraph
                     const paragraph = document.createElement('p');
                     paragraph.textContent = 'From the playground to the classroom to family adventures, our kids’ clothing is designed and built to fit the needs of active children.';
-                    paragraph.style.fontSize = '14px'; // Font size
-                    paragraph.style.color = '#333'; // Darker text color
-                    paragraph.style.marginTop = '10px'; // Space below Dress link
-                    paragraph.style.lineHeight = '1.5'; // Improve readability
+                    paragraph.style.fontSize = '14px';
+                    paragraph.style.color = '#333';
+                    paragraph.style.marginTop = '10px';
+                    paragraph.style.lineHeight = '1.5';
 
                     // Append the paragraph to the sublinkDiv
                     sublinkDiv.appendChild(paragraph);
 
                     // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
                     document.getElementById('messageContainer').appendChild(sublinkDiv);
-                }
+                }1  
             });
         });
+
 
 
 
