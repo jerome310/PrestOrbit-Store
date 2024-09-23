@@ -152,174 +152,109 @@
 
 <script>
     document.querySelectorAll('.subButton').forEach(button => {
-            button.addEventListener('click', function () {
-                // Hide all containers starting with "removeContainer"
-                document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                    container.style.display = 'none';
-                });
+        button.addEventListener('click', function () {
+            // Hide all containers starting with "removeContainer"
+            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                container.style.display = 'none';
+            });
 
-                // Ensure dynamic content is only created once
-                if (!document.getElementById('messageDiv')) {
-                    // Create a div for the top section (Woman link and image)
-                    const topSectionDiv = document.createElement('div');
-                    topSectionDiv.id = 'topSectionDiv';
+            // Ensure dynamic content is only created once
+            if (!document.getElementById('messageDiv')) {
+                // Create a div for the top section (Woman link and image)
+                const topSectionDiv = document.createElement('div');
+                topSectionDiv.id = 'topSectionDiv';
 
-                    // Apply Flexbox styles to the topSectionDiv
-                    topSectionDiv.style.display = 'flex';
-                    topSectionDiv.style.justifyContent = 'space-between';
-                    topSectionDiv.style.alignItems = 'center';
-                    topSectionDiv.style.width = '60%';
-                    topSectionDiv.style.marginBottom = '20px';
+                // Apply Flexbox styles to the topSectionDiv
+                topSectionDiv.style.display = 'flex';
+                topSectionDiv.style.justifyContent = 'space-between';
+                topSectionDiv.style.alignItems = 'center';
+                topSectionDiv.style.width = '60%';
+                topSectionDiv.style.marginBottom = '20px';
 
-                    // Create and style the image (positioned to the left)
-                    const img = document.createElement('img');
-                    img.src = "{{ 'back-arrow.png' | asset_url }}";
-                    img.alt = "dropdown arrow";
-                    img.style.width = '22px';
-                    img.style.cursor = 'pointer';
-                    img.style.marginLeft = '10px';
+                // Create and style the image (positioned to the left)
+                const img = document.createElement('img');
+                img.src = "{{ 'back-arrow.png' | asset_url }}";
+                img.alt = "dropdown arrow";
+                img.style.width = '22px';
+                img.style.cursor = 'pointer';
+                img.style.marginLeft = '10px';
 
-                    // Event listener to hide the dynamic content
-                    img.addEventListener('click', function () {
-                        // Hide the dynamic content
-                        topSectionDiv.style.display = 'none';
-                        document.getElementById('sublinkContainer').style.display = 'none';
+                // Event listener to hide the dynamic content
+                img.addEventListener('click', function () {
+                    // Hide the dynamic content
+                    topSectionDiv.style.display = 'none';
+                    document.getElementById('sublinkContainer').style.display = 'none';
 
-                        // Restore visibility of the original elements
-                        document.querySelectorAll('.subButton').forEach(subButton => {
-                            subButton.style.display = 'block';
-                        });
-                        document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                            container.style.display = 'flex';
-                        });
-
-                        // Ensure the dynamically created content does not interact with the navData container
-                        const messageContainer = document.getElementById('messageContainer');
-                        if (messageContainer.contains(topSectionDiv)) {
-                            messageContainer.removeChild(topSectionDiv);
-                        }
-                        const sublinkContainer = document.getElementById('sublinkContainer');
-                        if (messageContainer.contains(sublinkContainer)) {
-                            messageContainer.removeChild(sublinkContainer);
-                        }
+                    // Restore visibility of the original elements
+                    document.querySelectorAll('.subButton').forEach(subButton => {
+                        subButton.style.display = 'block';
+                    });
+                    document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
+                        container.style.display = 'flex';
                     });
 
-                    // Create and style the Woman link
-                    const textNode = document.createTextNode('Woman');
-                    const textSpan = document.createElement('span');
-                    textSpan.appendChild(textNode);
-                    textSpan.style.fontSize = '22px';
-                    textSpan.style.fontWeight = 'bold';
+                    // Ensure the dynamically created content does not interact with the navData container
+                    const messageContainer = document.getElementById('messageContainer');
+                    if (messageContainer.contains(topSectionDiv)) {
+                        messageContainer.removeChild(topSectionDiv);
+                    }
+                    const sublinkContainer = document.getElementById('sublinkContainer');
+                    if (messageContainer.contains(sublinkContainer)) {
+                        messageContainer.removeChild(sublinkContainer);
+                    }
+                });
 
-                    // Append the image and the Woman link to the top section div
-                    topSectionDiv.appendChild(img);
-                    topSectionDiv.appendChild(textSpan);
+                // Create and style the Woman link
+                const textNode = document.createTextNode('Woman');
+                const textSpan = document.createElement('span');
+                textSpan.appendChild(textNode);
+                textSpan.style.fontSize = '22px';
+                textSpan.style.fontWeight = 'bold';
 
-                    // Append the top section div to the page (e.g., inside the messageContainer)
-                    document.getElementById('messageContainer').appendChild(topSectionDiv);
+                // Append the image and the Woman link to the top section div
+                topSectionDiv.appendChild(img);
+                topSectionDiv.appendChild(textSpan);
 
-                    // Create a new div to hold the sublink and paragraph (positioned below)
-                    const sublinkDiv = document.createElement('div');
-                    sublinkDiv.id = 'sublinkContainer';
-                    sublinkDiv.style.backgroundColor = '#FFC0CB';
-                    sublinkDiv.style.padding = '10px';
-                    sublinkDiv.style.borderRadius = '5px';
-                    sublinkDiv.style.marginTop = '50px';
+                // Append the top section div to the page (e.g., inside the messageContainer)
+                document.getElementById('messageContainer').appendChild(topSectionDiv);
 
-                    // Create and style the Dress title link
-                    const dressLink = document.createElement('a');
-                    dressLink.href = "/collections/woman/dresses";
-                    dressLink.textContent = 'Dresses';
-                    dressLink.style.fontSize = '18px';
-                    dressLink.style.fontWeight = 'bold';
-                    dressLink.style.color = 'white';
-                    dressLink.style.display = 'block';
+                // Create a new div to hold the sublink and paragraph (positioned below)
+                const sublinkDiv = document.createElement('div');
+                sublinkDiv.id = 'sublinkContainer';
+                sublinkDiv.style.backgroundColor = '#FFC0CB';
+                sublinkDiv.style.padding = '20px';
+                sublinkDiv.style.borderRadius = '5px 5px 0 0'; // Apply border radius only to top corners
+                sublinkDiv.style.margin = '50px';
+                sublinkDiv.style.width = '75%';
 
-                    // Append the Dress link to the sublinkDiv
-                    sublinkDiv.appendChild(dressLink);
+                // Create and style the Dress title link
+                const dressLink = document.createElement('a');
+                dressLink.href = "/collections/woman/dresses";
+                dressLink.textContent = 'Dresses';
+                dressLink.style.fontSize = '18px';
+                dressLink.style.fontWeight = 'bold';
+                dressLink.style.color = 'white';
+                dressLink.style.display = 'block';
 
-                    // Create and style the paragraph
-                    const paragraph = document.createElement('p');
-                    paragraph.textContent = 'From the playground to the classroom to family adventures, our kids’ clothing is designed and built to fit the needs of active children.';
-                    paragraph.style.fontSize = '14px';
-                    paragraph.style.color = '#333';
-                    paragraph.style.marginTop = '10px';
-                    paragraph.style.lineHeight = '1.5';
+                // Append the Dress link to the sublinkDiv
+                sublinkDiv.appendChild(dressLink);
 
-                    // Append the paragraph to the sublinkDiv
-                    sublinkDiv.appendChild(paragraph);
+                // Create and style the paragraph
+                const paragraph = document.createElement('p');
+                paragraph.textContent = 'From the playground to the classroom to family adventures, our kids clothing is designed and built to fit the needs of active children.';
+                paragraph.style.fontSize = '14px';
+                paragraph.style.color = '#000000';
+                paragraph.style.marginTop = '10px';
+                paragraph.style.lineHeight = '1.5';
 
-                    // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
-                    document.getElementById('messageContainer').appendChild(sublinkDiv);
-                }1  
-            });
+                // Append the paragraph to the sublinkDiv
+                sublinkDiv.appendChild(paragraph);
+
+                // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
+                document.getElementById('messageContainer').appendChild(sublinkDiv);
+            }
         });
-
-
-
-
-    // document.querySelectorAll('.subButton').forEach(button => {
-    //         button.addEventListener('click', function () {
-    //             document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-    //                 container.style.display = 'none';
-    //             });
-
-    //             // Check if messageDiv already exists
-    //             if (!document.getElementById('messageDiv')) {
-    //                 const messageDiv = document.createElement('div');
-    //                 messageDiv.id = 'messageDiv'; // Assign an ID to the messageDiv
-    //                 const img = document.createElement('img');
-    //                 img.src = "{{ 'back-arrow.png' | asset_url }}";
-    //                 img.alt = "dropdown arrow";
-
-    //                 // Apply Flexbox styles to messageDiv
-    //                 messageDiv.style.display = 'flex';
-    //                 messageDiv.style.justifyContent = 'space-between';
-    //                 messageDiv.style.alignItems = 'center'; // Align items vertically in the center
-    //                 messageDiv.style.width = '55%'; // Set the width to 55%
-
-    //                 // Apply vanilla CSS styles to the image
-    //                 img.style.width = '22px'; // w-7 (1.75rem = 28px)
-    //                 img.style.position = 'relative';
-    //                 img.style.left = '10px';
-    //                 img.style.cursor = 'pointer'; // Add cursor pointer
-
-    //                 // Add click event listener to the image
-    //                 img.addEventListener('click', function () {
-    //                     console.log('Image clicked');
-    //                     document.querySelectorAll('.subButton').forEach(subButton => {
-    //                         console.log('Bringing back subButton:', subButton);
-    //                         subButton.style.display = 'block';
-    //                     });
-    //                     document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-    //                         container.style.display = 'flex';
-    //                     });
-    //                     messageDiv.style.display = 'none'; // Hide the messageDiv
-    //                 });
-
-    //                 messageDiv.appendChild(img);
-
-    //                 // Create a text node with the word "Woman"
-    //                 const textNode = document.createTextNode('Woman');
-    //                 const textSpan = document.createElement('span');
-    //                 textSpan.appendChild(textNode);
-    //                 textSpan.style.fontSize = '22px'; // Set the font size to 22px
-    //                 messageDiv.appendChild(textSpan);
-
-    //                 // Append the new div to the messageContainer
-    //                 document.getElementById('messageContainer').appendChild(messageDiv);
-    //             }
-    //         });
-    //     });
-
-    //     // Add event listener to subButton to display messageDiv as flex
-    //     document.querySelectorAll('.subButton').forEach(button => {
-    //         button.addEventListener('click', function () {
-    //             document.querySelectorAll('#messageContainer > div').forEach(messageDiv => {
-    //                 messageDiv.style.display = 'flex';
-    //             });
-    //         });
-    //     });
+    });
 </script>
 
 
