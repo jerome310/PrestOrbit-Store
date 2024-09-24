@@ -158,13 +158,15 @@
                 container.style.display = 'none';
             });
 
-            // Ensure dynamic content is only created once
-            if (!document.getElementById('messageDiv')) {
-                // Create a div for the top section (Woman link and image)
-                const topSectionDiv = document.createElement('div');
-                topSectionDiv.id = 'topSectionDiv';
+            let topSectionDiv = document.getElementById('topSectionDiv');
+            let sublinkDiv = document.getElementById('sublinkContainer');
+            let wardrobeImg = document.querySelector('#messageContainer > img');
 
-                // Apply Flexbox styles to the topSectionDiv
+            // Create elements if they don't exist
+            if (!topSectionDiv) {
+                // Create topSectionDiv
+                topSectionDiv = document.createElement('div');
+                topSectionDiv.id = 'topSectionDiv';
                 topSectionDiv.style.display = 'flex';
                 topSectionDiv.style.justifyContent = 'space-between';
                 topSectionDiv.style.alignItems = 'center';
@@ -183,7 +185,8 @@
                 img.addEventListener('click', function () {
                     // Hide the dynamic content
                     topSectionDiv.style.display = 'none';
-                    document.getElementById('sublinkContainer').style.display = 'none';
+                    sublinkDiv.style.display = 'none';
+                    wardrobeImg.style.display = 'none';
 
                     // Restore visibility of the original elements
                     document.querySelectorAll('.subButton').forEach(subButton => {
@@ -198,9 +201,11 @@
                     if (messageContainer.contains(topSectionDiv)) {
                         messageContainer.removeChild(topSectionDiv);
                     }
-                    const sublinkContainer = document.getElementById('sublinkContainer');
-                    if (messageContainer.contains(sublinkContainer)) {
-                        messageContainer.removeChild(sublinkContainer);
+                    if (messageContainer.contains(sublinkDiv)) {
+                        messageContainer.removeChild(sublinkDiv);
+                    }
+                    if (messageContainer.contains(wardrobeImg)) {
+                        messageContainer.removeChild(wardrobeImg);
                     }
                 });
 
@@ -215,17 +220,30 @@
                 topSectionDiv.appendChild(img);
                 topSectionDiv.appendChild(textSpan);
 
-                // Append the top section div to the page (e.g., inside the messageContainer)
-                document.getElementById('messageContainer').appendChild(topSectionDiv);
+                // Create a container for sublinkDiv and wardrobeImg
+                const contentContainer = document.createElement('div');
+                contentContainer.style.width = '75%';
+                contentContainer.style.margin = '0 auto';
+                contentContainer.style.overflow = 'hidden';
+                contentContainer.style.borderRadius = '5px';
+                contentContainer.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
 
-                // Create a new div to hold the sublink and paragraph (positioned below)
-                const sublinkDiv = document.createElement('div');
+                // Create an anchor tag for sublinkDiv
+                const sublinkAnchor = document.createElement('a');
+                sublinkAnchor.href = "/collections/woman/dresses";
+                sublinkAnchor.style.textDecoration = 'none';
+                sublinkAnchor.style.color = 'inherit';
+                sublinkAnchor.style.display = 'block';
+
+                // Create sublinkDiv
+                sublinkDiv = document.createElement('div');
                 sublinkDiv.id = 'sublinkContainer';
                 sublinkDiv.style.backgroundColor = '#FFC0CB';
                 sublinkDiv.style.padding = '20px';
-                sublinkDiv.style.borderRadius = '5px 5px 0 0'; // Apply border radius only to top corners
-                sublinkDiv.style.margin = '50px';
-                sublinkDiv.style.width = '75%';
+                sublinkDiv.style.borderRadius = '5px 5px 0 0';
+                sublinkDiv.style.width = '100%';
+                sublinkDiv.style.boxSizing = 'border-box';
+                sublinkDiv.style.margin = '0';
 
                 // Create and style the Dress title link
                 const dressLink = document.createElement('a');
@@ -250,8 +268,48 @@
                 // Append the paragraph to the sublinkDiv
                 sublinkDiv.appendChild(paragraph);
 
-                // Finally, append the sublinkDiv to the page (e.g., inside the messageContainer)
-                document.getElementById('messageContainer').appendChild(sublinkDiv);
+                // Append sublinkDiv to its anchor
+                sublinkAnchor.appendChild(sublinkDiv);
+
+                // Create an anchor tag for wardrobeImg
+                const imageAnchor = document.createElement('a');
+                imageAnchor.href = "/collections/woman/dresses";
+                imageAnchor.style.display = 'block';
+
+                // Create wardrobeImg
+                wardrobeImg = document.createElement('img');
+                wardrobeImg.src = "{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}";
+                wardrobeImg.alt = "Spring Wardrobe";
+                wardrobeImg.style.width = '100%';
+                wardrobeImg.style.height = '400px';
+                wardrobeImg.style.objectFit = 'cover';
+                wardrobeImg.style.objectPosition = 'center top';
+                wardrobeImg.style.display = 'block';
+                wardrobeImg.style.margin = '0';
+
+                // Append wardrobeImg to its anchor
+                imageAnchor.appendChild(wardrobeImg);
+
+                // Append both anchors to the contentContainer
+                contentContainer.appendChild(sublinkAnchor);
+                contentContainer.appendChild(imageAnchor);
+
+                // Append elements to messageContainer
+                const messageContainer = document.getElementById('messageContainer');
+                messageContainer.appendChild(topSectionDiv);
+                messageContainer.appendChild(contentContainer);
+
+                // Add click event to topSectionDiv
+                topSectionDiv.addEventListener('click', function() {
+                    contentContainer.style.display = contentContainer.style.display === 'none' ? 'block' : 'none';
+                });
+            }
+
+            // Show elements when subButton is clicked
+            topSectionDiv.style.display = 'flex';
+            const contentContainer = document.querySelector('#messageContainer > div:nth-child(2)');
+            if (contentContainer) {
+                contentContainer.style.display = 'block';
             }
         });
     });
