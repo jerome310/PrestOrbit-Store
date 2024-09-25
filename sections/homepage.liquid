@@ -11,7 +11,7 @@
         style="background-image: url('{{ section.settings.background_image | img_url: 'master' }}');">
     {% endif %}
 <!-- Create a navbar slider with a hamburger icon -->
-<div class="z-30 flex flex-col mx-auto pt-5" x-data="{open: false, searchBarButtonOpen: false}">
+<div class="z-30 flex flex-col mx-auto pt-5" x-data="{open: false, searchBarButtonOpen: false, subNavOpen: false}">
     <!-- Navbar -->
     <div class="flex items-center justify-between flex-col px-4 py-3">
         <div class="flex items-center justify-between lg:justify-normal w-full">
@@ -39,10 +39,14 @@
             <div id="removeContainer" class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50">
                 <div class="flex items-center justify-between">
                     <div>
-                        <button class="subButton"
-                            class="font-normal text-black block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform">
-                            Woman
-                        </button>
+                    <button
+                        class="subButton font-normal text-black block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform">
+                        {% for link in linklists.main-menu.links limit:1 %}
+                        <span class="font-normal text-black">
+                            {{ link.title }}
+                        </span>
+                        {% endfor %}
+                    </button>
                     </div>
                     <div>
                         <button class="subButton">
@@ -61,7 +65,32 @@
                 {% render 'social-media-youtube' %}
             </div>
 
-            <div id="messageContainer"></div>
+            {% comment %} Inside First Navbar Slider Info {% endcomment %}
+            <div id="messageContainer" class="hidden">
+                <div id="topSectionDiv" class="flex justify-between items-center w-full mb-5">
+                    <img src="{{ 'back-arrow.png' | asset_url }}" alt="back arrow" class="w-[20px] cursor-pointer ml-2.5">
+                    <span class="text-center flex-1 mr-2.5">
+                        {% for link in linklists.main-menu.links limit:1 %}
+                        <span class="text-2xl font-bold">
+                            {{ link.title }}
+                        </span>
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="w-3/4 mx-auto overflow-hidden rounded-lg shadow-md">
+                    <a href="/collections/woman/dresses" class="block no-underline text-inherit">
+                        <div id="sublinkContainer" class="bg-[#FFC0CB] p-5 rounded-t-lg w-full box-border m-0">
+                            <a href="/collections/woman/dresses" class="text-lg font-bold text-white block">Dresses</a>
+                            <p class="text-sm text-black mt-2.5 leading-normal">
+                                From the playground to the classroom to family adventures, our kids clothing is designed and built to fit the needs of active children.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="/collections/woman/dresses" class="block">
+                        <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}" alt="Spring Wardrobe" class="w-full h-[400px] object-cover object-center block m-0">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -151,173 +180,29 @@
 </div>
 
 <script>
-    document.querySelectorAll('.subButton').forEach(button => {
-        button.addEventListener('click', function () {
-            // Hide all containers starting with "removeContainer"
-            document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                container.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        const removeContainers = document.querySelectorAll('#removeContainer');
+        const messageContainer = document.getElementById('messageContainer');
+        const subButtons = document.querySelectorAll('.subButton');
+        const topSectionDiv = document.getElementById('topSectionDiv');
+
+        subButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                removeContainers.forEach(container => {
+                    container.classList.add('hidden');
+                });
+                messageContainer.classList.remove('hidden');
             });
+        });
 
-            let topSectionDiv = document.getElementById('topSectionDiv');
-            let sublinkDiv = document.getElementById('sublinkContainer');
-            let wardrobeImg = document.querySelector('#messageContainer > img');
-
-            // Create elements if they don't exist
-            if (!topSectionDiv) {
-                // Create topSectionDiv
-                topSectionDiv = document.createElement('div');
-                topSectionDiv.id = 'topSectionDiv';
-                topSectionDiv.style.display = 'flex';
-                topSectionDiv.style.justifyContent = 'space-between';
-                topSectionDiv.style.alignItems = 'center';
-                topSectionDiv.style.width = '60%';
-                topSectionDiv.style.marginBottom = '20px';
-
-                // Create and style the image (positioned to the left)
-                const img = document.createElement('img');
-                img.src = "{{ 'back-arrow.png' | asset_url }}";
-                img.alt = "dropdown arrow";
-                img.style.width = '22px';
-                img.style.cursor = 'pointer';
-                img.style.marginLeft = '10px';
-
-                // Event listener to hide the dynamic content
-                img.addEventListener('click', function () {
-                    // Hide the dynamic content
-                    topSectionDiv.style.display = 'none';
-                    sublinkDiv.style.display = 'none';
-                    wardrobeImg.style.display = 'none';
-
-                    // Restore visibility of the original elements
-                    document.querySelectorAll('.subButton').forEach(subButton => {
-                        subButton.style.display = 'block';
-                    });
-                    document.querySelectorAll('[id^="removeContainer"]').forEach(container => {
-                        container.style.display = 'flex';
-                    });
-
-                    // Ensure the dynamically created content does not interact with the navData container
-                    const messageContainer = document.getElementById('messageContainer');
-                    if (messageContainer.contains(topSectionDiv)) {
-                        messageContainer.removeChild(topSectionDiv);
-                    }
-                    if (messageContainer.contains(sublinkDiv)) {
-                        messageContainer.removeChild(sublinkDiv);
-                    }
-                    if (messageContainer.contains(wardrobeImg)) {
-                        messageContainer.removeChild(wardrobeImg);
-                    }
-                });
-
-                // Create and style the Woman link
-                const textNode = document.createTextNode('Woman');
-                const textSpan = document.createElement('span');
-                textSpan.appendChild(textNode);
-                textSpan.style.fontSize = '22px';
-                textSpan.style.fontWeight = 'bold';
-
-                // Append the image and the Woman link to the top section div
-                topSectionDiv.appendChild(img);
-                topSectionDiv.appendChild(textSpan);
-
-                // Create a container for sublinkDiv and wardrobeImg
-                const contentContainer = document.createElement('div');
-                contentContainer.style.width = '75%';
-                contentContainer.style.margin = '0 auto';
-                contentContainer.style.overflow = 'hidden';
-                contentContainer.style.borderRadius = '5px';
-                contentContainer.style.boxShadow = '0 0 10px rgba(0,0,0,0.1)';
-
-                // Create an anchor tag for sublinkDiv
-                const sublinkAnchor = document.createElement('a');
-                sublinkAnchor.href = "/collections/woman/dresses";
-                sublinkAnchor.style.textDecoration = 'none';
-                sublinkAnchor.style.color = 'inherit';
-                sublinkAnchor.style.display = 'block';
-
-                // Create sublinkDiv
-                sublinkDiv = document.createElement('div');
-                sublinkDiv.id = 'sublinkContainer';
-                sublinkDiv.style.backgroundColor = '#FFC0CB';
-                sublinkDiv.style.padding = '20px';
-                sublinkDiv.style.borderRadius = '5px 5px 0 0';
-                sublinkDiv.style.width = '100%';
-                sublinkDiv.style.boxSizing = 'border-box';
-                sublinkDiv.style.margin = '0';
-
-                // Create and style the Dress title link
-                const dressLink = document.createElement('a');
-                dressLink.href = "/collections/woman/dresses";
-                dressLink.textContent = 'Dresses';
-                dressLink.style.fontSize = '18px';
-                dressLink.style.fontWeight = 'bold';
-                dressLink.style.color = 'white';
-                dressLink.style.display = 'block';
-
-                // Append the Dress link to the sublinkDiv
-                sublinkDiv.appendChild(dressLink);
-
-                // Create and style the paragraph
-                const paragraph = document.createElement('p');
-                paragraph.textContent = 'From the playground to the classroom to family adventures, our kids clothing is designed and built to fit the needs of active children.';
-                paragraph.style.fontSize = '14px';
-                paragraph.style.color = '#000000';
-                paragraph.style.marginTop = '10px';
-                paragraph.style.lineHeight = '1.5';
-
-                // Append the paragraph to the sublinkDiv
-                sublinkDiv.appendChild(paragraph);
-
-                // Append sublinkDiv to its anchor
-                sublinkAnchor.appendChild(sublinkDiv);
-
-                // Create an anchor tag for wardrobeImg
-                const imageAnchor = document.createElement('a');
-                imageAnchor.href = "/collections/woman/dresses";
-                imageAnchor.style.display = 'block';
-
-                // Create wardrobeImg
-                wardrobeImg = document.createElement('img');
-                wardrobeImg.src = "{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}";
-                wardrobeImg.alt = "Spring Wardrobe";
-                wardrobeImg.style.width = '100%';
-                wardrobeImg.style.height = '400px';
-                wardrobeImg.style.objectFit = 'cover';
-                wardrobeImg.style.objectPosition = 'center top';
-                wardrobeImg.style.display = 'block';
-                wardrobeImg.style.margin = '0';
-
-                // Append wardrobeImg to its anchor
-                imageAnchor.appendChild(wardrobeImg);
-
-                // Append both anchors to the contentContainer
-                contentContainer.appendChild(sublinkAnchor);
-                contentContainer.appendChild(imageAnchor);
-
-                // Append elements to messageContainer
-                const messageContainer = document.getElementById('messageContainer');
-                messageContainer.appendChild(topSectionDiv);
-                messageContainer.appendChild(contentContainer);
-
-                // Add click event to topSectionDiv
-                topSectionDiv.addEventListener('click', function() {
-                    contentContainer.style.display = contentContainer.style.display === 'none' ? 'block' : 'none';
-                });
-            }
-
-            // Show elements when subButton is clicked
-            topSectionDiv.style.display = 'flex';
-            const contentContainer = document.querySelector('#messageContainer > div:nth-child(2)');
-            if (contentContainer) {
-                contentContainer.style.display = 'block';
-            }
+        topSectionDiv.querySelector('img').addEventListener('click', function() {
+            messageContainer.classList.add('hidden');
+            removeContainers.forEach(container => {
+                container.classList.remove('hidden');
+            });
         });
     });
 </script>
-
-
-
-
 
 {% schema %}
 {
