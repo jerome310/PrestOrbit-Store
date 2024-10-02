@@ -1,5 +1,24 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Russo+One&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+  /* SCROLLABLE CONTENT FOR SUBNAV MOBILE NAVBAR */
+    #messageContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #scrollableContent {
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 </style>
 
 
@@ -17,7 +36,8 @@
         <div class="flex items-center justify-between lg:justify-normal w-full">
         <!-- Hamburger icon -->
     <div x-data="{ open: false }">
-        <button class="text-[#2E2D34] focus:outline-none xl:hidden"
+        
+        <button id="hamburger-icon" class="text-[#2E2D34] focus:outline-none xl:hidden"
             @click="open = !open; if (open) { document.body.classList.add('overflow-hidden') } else { document.body.classList.remove('overflow-hidden') }">
             <svg class="h-6 w-6 text-white z-50" x-show="!open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -36,7 +56,7 @@
                 </svg>
             </div>
             <!-- Mobile Links -->
-            <div id="removeContainer" class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50">
+            <div id="removeContainer" class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50 hidden">
                 <div class="flex items-center justify-between">
                     <div>
                     <button
@@ -65,32 +85,71 @@
                 {% render 'social-media-youtube' %}
             </div>
 
-            {% comment %} Inside First Navbar Slider Info {% endcomment %}
+            {% comment %} Start of Inside First Sub Navbar Slider Color Box {% endcomment %}
             <div id="messageContainer" class="hidden">
-                <div id="topSectionDiv" class="flex justify-between items-center w-full mb-5">
-                    <img src="{{ 'back-arrow.png' | asset_url }}" alt="back arrow" class="w-[20px] cursor-pointer ml-2.5">
-                    <span class="text-center flex-1 mr-2.5">
+                <div id="topSectionDiv" class="flex justify-between items-center w-full p-4 bg-white">
+                    <img src="{{ 'back-arrow.png' | asset_url }}" alt="back arrow" class="w-[20px] cursor-pointer" id="backArrow">
+                    <span class="text-center flex-1">
                         {% for link in linklists.main-menu.links limit:1 %}
                         <span class="text-2xl font-bold">
                             {{ link.title }}
                         </span>
                         {% endfor %}
                     </span>
+                    <img src="{{ 'close-icon.png' | asset_url }}" alt="close" class="w-[20px] cursor-pointer" id="closeButton">
                 </div>
-                <div class="w-3/4 mx-auto overflow-hidden rounded-lg shadow-md">
-                    <a href="/collections/woman/dresses" class="block no-underline text-inherit">
-                        <div id="sublinkContainer" class="bg-[#FFC0CB] p-5 rounded-t-lg w-full box-border m-0">
-                            <a href="/collections/woman/dresses" class="text-lg font-bold text-white block">Dresses</a>
-                            <p class="text-sm text-black mt-2.5 leading-normal">
-                                From the playground to the classroom to family adventures, our kids clothing is designed and built to fit the needs of active children.
-                            </p>
+                <div id="scrollableContent" class="px-4 overflow-y-auto max-h-[400px]"> <!-- Ensure this has the correct styles -->
+                    <div class="space-y-4 pb-4">
+                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                            <a href="/collections/woman/dresses" class="block no-underline text-inherit">
+                                <div class="sublinkContainer bg-[#FFC0CB] p-5 rounded-t-lg w-full box-border m-0">
+                                    <a href="/collections/woman/dresses" class="text-lg font-bold text-white block">Accessories</a>
+                                    <a href="/collections/woman/dresses" class="text-sm text-black mt-2.5 leading-normal">
+                                        Step up your style game with our eye-catching accessories! Our designer shoes will have you strutting
+                                        with confidence, while our trendy glasses add that perfect touch of sophistication.
+                                    </a>
+                                </div>
+                            </a>
+                            <a href="/collections/woman/dresses" class="block">
+                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                    class="w-full h-[400px] object-cover object-center block m-0">
+                            </a>
                         </div>
-                    </a>
-                    <a href="/collections/woman/dresses" class="block">
-                        <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}" alt="Spring Wardrobe" class="w-full h-[400px] object-cover object-center block m-0">
-                    </a>
+                        
+                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                            <a href="/collections/woman/tops" class="block no-underline text-inherit">
+                                <div class="sublinkContainer bg-[#87CEEB] p-5 rounded-t-lg w-full box-border m-0">
+                                    <a href="/collections/woman/tops" class="text-lg font-bold text-white block">Tops</a>
+                                    <a href="/collections/woman/tops" class="text-sm text-black mt-2.5 leading-normal">
+                                        Discover our latest collection of trendy tops! From casual tees to elegant blouses, 
+                                        we have the perfect top for every occasion.
+                                    </a>
+                                </div>
+                            </a>
+                            <a href="/collections/woman/tops" class="block">
+                                <img src="{{ 'tops-collection.jpg' | asset_url }}" alt="Tops Collection"
+                                    class="w-full h-[400px] object-cover object-center block m-0">
+                            </a>
+                        </div>
+                        
+                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                            <a href="/collections/woman/bottoms" class="block no-underline text-inherit">
+                                <div class="sublinkContainer bg-[#98FB98] p-5 rounded-t-lg w-full box-border m-0">
+                                    <a href="/collections/woman/bottoms" class="text-lg font-bold text-white block">Bottoms</a>
+                                    <a href="/collections/woman/bottoms" class="text-sm text-black mt-2.5 leading-normal">
+                                        Complete your look with our stylish bottoms! From comfortable jeans to elegant skirts, 
+                                        we have the perfect bottom to match your style.
+                                    </a>
+                                </div>
+                            </a>
+                            <a href="/collections/woman/bottoms" class="block">
+                                <img src="{{ 'bottoms-collection.jpg' | asset_url }}" alt="Bottoms Collection"
+                                    class="w-full h-[400px] object-cover object-center block m-0">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
 
@@ -181,25 +240,31 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const removeContainers = document.querySelectorAll('#removeContainer');
         const messageContainer = document.getElementById('messageContainer');
+        const removeContainer = document.getElementById('removeContainer');
         const subButtons = document.querySelectorAll('.subButton');
-        const topSectionDiv = document.getElementById('topSectionDiv');
+        const hamburgerButton = document.getElementById('hamburger-icon'); // Target the hamburger button by ID
 
+        // Hide messageContainer on page load
+        messageContainer.style.display = 'none'; // Explicitly hide the messageContainer
+
+        // Show removeContainer and hide messageContainer when hamburger button is clicked
+        hamburgerButton.addEventListener('click', function() {
+            removeContainer.classList.remove('hidden'); // Show removeContainer
+            messageContainer.style.display = 'none'; // Hide messageContainer explicitly
+        });
+
+        // Show messageContainer when subButton is clicked
         subButtons.forEach(button => {
             button.addEventListener('click', function() {
-                removeContainers.forEach(container => {
-                    container.classList.add('hidden');
-                });
-                messageContainer.classList.remove('hidden');
+                removeContainer.classList.add('hidden'); // Hide removeContainer
+                messageContainer.style.display = 'block'; // Show messageContainer explicitly
             });
         });
 
-        topSectionDiv.querySelector('img').addEventListener('click', function() {
-            messageContainer.classList.add('hidden');
-            removeContainers.forEach(container => {
-                container.classList.remove('hidden');
-            });
+        // Close button functionality
+        document.getElementById('closeButton').addEventListener('click', function() {
+            messageContainer.style.display = 'none'; // Hide messageContainer when close button is clicked
         });
     });
 </script>
