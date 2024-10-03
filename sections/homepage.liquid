@@ -266,6 +266,29 @@
         document.getElementById('closeButton').addEventListener('click', function() {
             messageContainer.style.display = 'none'; // Hide messageContainer when close button is clicked
         });
+
+        // Function to handle back arrow click
+        function handleBackArrowClick() {
+            if (messageContainer) {
+                messageContainer.style.display = 'none'; // Hide messageContainer
+            }
+            if (removeContainer) {
+                removeContainer.style.display = 'block'; // Show removeContainer
+            }
+        }
+
+        // Function to handle subButton click
+        function handleSubButtonClick() {
+            if (messageContainer) {
+                messageContainer.style.display = 'block'; // Show messageContainer
+            }
+            if (removeContainer) {
+                removeContainer.style.display = 'none'; // Hide removeContainer
+            }
+        }
+
+        // Add event listener for back arrow click
+        document.getElementById('backArrow').addEventListener('click', handleBackArrowClick);
     });
 </script>
 
