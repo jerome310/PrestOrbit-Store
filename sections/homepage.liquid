@@ -108,34 +108,38 @@
                                         {% endfor %}
                                     </span>
                                     <svg @click="open = false; document.body.classList.remove('overflow-hidden')"
-                                        class="h-6 w-6 text-black z-50 absolute top-4 right-4 cursor-pointer" x-show="open" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        class="h-6 w-6 text-black z-50 absolute top-4 right-4 cursor-pointer"
+                                        x-show="open" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </div>
                                 <div id="scrollableContent" class="px-4 overflow-y-auto max-h-[400px]">
                                     <!-- Ensure this has the correct styles -->
                                     <div class="space-y-4 pb-4">
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
-                                            <a href="/collections/woman/dresses"
+                                            <a href="{{ section.settings.woman_accessories_link }}"
                                                 class="block no-underline text-inherit">
                                                 <div
                                                     class="sublinkContainer bg-[#F18993] p-5 rounded-t-lg w-full box-border m-0">
-                                                    <a href="/collections/woman/dresses"
-                                                        class="text-lg font-bold text-white block">Accessories</a>
-                                                    <a href="/collections/woman/dresses"
+                                                    <a href="{{ section.settings.woman_accessories_link }}"
+                                                        class="text-lg font-bold text-white block">{{
+                                                        section.settings.woman_accessories_text }}</a>
+                                                    <a href="{{ section.settings.woman_accessories_link }}"
                                                         class="text-sm text-white mt-2.5 leading-normal">
-                                                        Step up your style game with our eye-catching accessories! Our
-                                                        designer shoes will have you strutting
-                                                        with confidence, while our trendy glasses add that perfect touch
-                                                        of sophistication.
+                                                        {{ section.settings.woman_accessories_description }}
                                                     </a>
                                                 </div>
                                             </a>
-                                            <a href="/collections/woman/dresses" class="block">
-                                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}"
+                                            <a href="{{ section.settings.woman_accessories_link }}" class="block">
+                                                {% if section.settings.woman_accessories_image == blank %}
+                                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | default: 'placeholder-product.jpg' | asset_url }}"
                                                     alt="Spring Wardrobe"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
+                                                {% else %}
+                                                <img src="{{ section.settings.woman_accessories_image | img_url: 'master' }}"
+                                                    alt="My company logo">
+                                                {% endif %}
                                             </a>
                                         </div>
 
@@ -175,8 +179,7 @@
                                                 </div>
                                             </a>
                                             <a href="/collections/woman/bottoms" class="block">
-                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}"
-                                                    alt="Bottoms Collection"
+                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}" alt="Bottoms Collection"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
                                             </a>
                                         </div>
@@ -361,6 +364,29 @@
 "id": "font_style",
 "label": "Font Styling",
 "default": "work_sans_n4"
+},
+{
+"type": "text",
+"id": "woman_accessories_text",
+"label": "Woman Accessories Text",
+"default": "Accessories"
+},
+{
+"type": "text",
+"id": "woman_accessories_description",
+"label": "Woman Accessories Description",
+"default": "Step up your style game with our eye-catching accessories! Our designer shoes will have you strutting with confidence, while our trendy glasses add that perfect touch of sophistication."
+},
+{
+"type": "image_picker",
+"id": "woman_accessories_image",
+"label": "Woman Accessories Image"
+},
+{
+"type": "text",
+"id": "woman_accessories_link",
+"label": "Woman Accessories Link",
+"default": "/collections/woman/dresses" // Default link can be set here
 }
 ]
 }
