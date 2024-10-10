@@ -115,7 +115,7 @@
                                     </svg>
                                 </div>
                                 <div id="scrollableContent" class="px-4 overflow-y-auto max-h-[400px]">
-                                    <!-- Ensure this has the correct styles -->
+                                    {% comment %} Woman Accessories Section {% endcomment %}
                                     <div class="space-y-4 pb-4">
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
                                             <a href="{{ section.settings.woman_accessories_link }}"
@@ -133,7 +133,7 @@
                                             </a>
                                             <a href="{{ section.settings.woman_accessories_link }}" class="block">
                                                 {% if section.settings.woman_accessories_image == blank %}
-                                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | default: 'placeholder-product.jpg' | asset_url }}"
+                                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}"
                                                     alt="Spring Wardrobe"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
                                                 {% else %}
@@ -143,6 +143,7 @@
                                             </a>
                                         </div>
 
+                                        {% comment %} Woman Dresses Section {% endcomment %}
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
                                             <a href="{{ section.settings.woman_dresses_link }}" class="block no-underline text-inherit">
                                                 <div
@@ -151,14 +152,13 @@
                                                         class="text-lg font-bold text-white block">{{ section.settings.woman_dresses_text }}</a>
                                                     <a href="{{ section.settings.woman_dresses_link }}"
                                                         class="text-sm text-white mt-2.5 leading-normal">
-                                                        {{ section.settings.woman_dresses_description }}
-                                                        
+                                                        {{ section.settings.woman_dresses_description }} 
                                                     </a>
                                                 </div>
                                             </a>
                                             <a href="{{ section.settings.woman_dresses_link }}" class="block">
                                                 {% if section.settings.woman_dresses_image == blank %}
-                                                <img src="{{ 'woman-dresses.jpg' | default: 'placeholder-product.jpg' | asset_url }}"
+                                                <img src="{{ 'woman-dresses.jpg' | asset_url }}"
                                                     alt="Spring Wardrobe" class="w-full h-[400px] object-cover object-center block m-0">
                                                 {% else %}
                                                 <img src="{{ section.settings.woman_dresses_image | img_url: 'master' }}" alt="My company logo">
@@ -166,25 +166,28 @@
                                             </a>
                                         </div>
 
+                                        {% comment %} Woman Shoes Section {% endcomment %}
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
-                                            <a href="/collections/woman/bottoms"
+                                            <a href="{{ section.settings.woman_shoes_link }}"
                                                 class="block no-underline text-inherit">
                                                 <div
                                                     class="sublinkContainer bg-[#025B56] p-5 rounded-t-lg w-full box-border m-0">
-                                                    <a href="/collections/woman/bottoms"
-                                                        class="text-lg font-bold text-white block">Shoes</a>
-                                                    <a href="/collections/woman/bottoms"
+                                                    <a href="{{ section.settings.woman_shoes_link }}"
+                                                        class="text-lg font-bold text-white block">{{ section.settings.woman_shoes_text }}</a>
+                                                    <a href="{{ section.settings.woman_shoes_link }}"
                                                         class="text-sm text-white mt-2.5 leading-normal">
-                                                        Complete your look with our stylish bottoms! From comfortable
-                                                        jeans to elegant skirts,
-                                                        we have the perfect bottom to match your style.
+                                                        {{ section.settings.woman_shoes_description }}                                                       
                                                     </a>
                                                 </div>
                                             </a>
-                                            <a href="/collections/woman/bottoms" class="block">
-                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}" alt="Bottoms Collection"
+                                            <a href="{{ section.settings.woman_shoes_link }}" class="block">
+                                                {% if section.settings.woman_shoes_image == blank %}
+                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}" alt="Spring Wardrobe"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
-                                            </a>
+                                                {% else %}
+                                                <img src="{{ section.settings.woman_shoes_image | img_url: 'master' }}" alt="My company logo">
+                                                {% endif %}
+                                            </a>                                           
                                         </div>
                                     </div>
                                 </div>
@@ -389,7 +392,7 @@
 "type": "text",
 "id": "woman_accessories_link",
 "label": "Woman Accessories Link",
-"default": "/collections/woman/dresses" // Default link can be set here
+"default": "collections/woman-accessories" // Default link can be set here
 },
 {
 "type": "text",
@@ -412,7 +415,30 @@
 "type": "text",
 "id": "woman_dresses_link",
 "label": "Woman Dresses Link",
-"default": "/collections/woman/dresses" // Default link can be set here
+"default": "/collections/woman-dress-collection" // Default link can be set here
+},
+{
+"type": "text",
+"id": "woman_shoes_text",
+"label": "Woman Shoes Text",
+"default": "Shoes"
+},
+{
+"type": "image_picker",
+"id": "woman_shoes_image",
+"label": "Woman Shoes Image"
+},
+{
+"type": "text",
+"id": "woman_shoes_description",
+"label": "Woman Shoes Description",
+"default": "Complete your look with our stylish bottoms! From comfortable jeans to elegant skirts, we have the perfect bottom to match your style."
+},
+{
+"type": "text",
+"id": "woman_shoes_link",
+"label": "Woman Shoes Link",
+"default": "/collections/woman-shoes-collection" // Default link can be set here
 },
 ]
 }
