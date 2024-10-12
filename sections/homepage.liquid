@@ -14,7 +14,25 @@
         flex-direction: column;
     }
 
+    #messageContainerTwo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: white;
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+    }
+
     #scrollableContent {
+        flex-grow: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #scrollableContentTwo {
         flex-grow: 1;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -63,8 +81,10 @@
                                 </svg>
                             </div>
                             <!-- Mobile Links -->
-                            <div id="removeContainer"
-                                class="flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50 hidden">
+                           
+
+                            <div class="removeContainer flex flex-col px-4 pt-6 md:pt-12 md:py-2 space-y-2 z-50 hidden">
+                                {% comment %} First Navlink {% endcomment %}
                                 <div class="flex items-center justify-between">
                                     <div>
                                         <button
@@ -75,7 +95,7 @@
                                             </span>
                                             {% endfor %}
                                         </button>
-                                    </div>
+                                    </div>                                   
                                     <div>
                                         <button class="subButton">
                                             <img class="w-7 mr-6" src="{{ 'forward-arrow.png' | asset_url }}"
@@ -83,10 +103,28 @@
                                         </button>
                                     </div>
                                 </div>
+                                {% comment %} Second Navlink {% endcomment %}
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <button
+                                            class="subButtonTwo font-normal text-black block px-3 py-2 rounded-md text-base transition-all duration-500 ease-in-out transform">
+                                            {% for link in linklists.main-menu.links offset: 1 limit: 1 %}
+                                            <span class="font-normal text-black">
+                                                {{ link.title }}
+                                            </span>
+                                            {% endfor %}
+                                        </button>
+                                    </div>                                   
+                                    <div>
+                                        <button class="subButtonTwo">
+                                            <img class="w-7 mr-6" src="{{ 'forward-arrow.png' | asset_url }}"
+                                                alt="dropdown arrow">
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div id="removeContainer"
-                                class="flex px-6 pt-8 pb-6 z-50 transition-all duration-500 ease-in-out transform">
+                            <div class="removeContainer flex px-6 pt-8 pb-6 z-50 transition-all duration-500 ease-in-out transform">
                                 {% render 'social-media-twitter' %}
                                 {% render 'social-media-facebook' %}
                                 {% render 'social-media-pinterest' %}
@@ -97,7 +135,7 @@
 
                             {% comment %} Start of Inside First Sub Navbar Slider Color Box {% endcomment %}
                             <div id="messageContainer" class="hidden">
-                                <div id="topSectionDiv" class="flex justify-between items-center w-full p-4 bg-white">
+                                <div id="topSectionDiv" class="flex justify-between items-center w-full pr-4 pb-4 pl-4 pt-3 bg-white">
                                     <img src="{{ 'back-arrow.png' | asset_url }}" alt="back arrow"
                                         class="w-[20px] cursor-pointer" id="backArrow">
                                     <span class="text-center flex-1">
@@ -188,6 +226,94 @@
                                                 <img src="{{ section.settings.woman_shoes_image | img_url: 'master' }}" alt="My company logo">
                                                 {% endif %}
                                             </a>                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% comment %} Start of Inside Second Sub Navbar Slider Color Box {% endcomment %}
+                            <div id="messageContainerTwo" class="hidden">
+                                <div id="topSectionDivTwo" class="flex justify-between items-center w-full pr-4 pb-4 pl-4 pt-3 bg-white">
+                                    <img src="{{ 'back-arrow.png' | asset_url }}" alt="back arrow" class="w-[20px] cursor-pointer" id="backArrowTwo">
+                                    <span class="text-center flex-1">
+                                        {% for link in linklists.main-menu.links offset: 1 limit: 1 %}
+                                        <span class="text-2xl font-bold">
+                                            {{ link.title }}
+                                        </span>
+                                        {% endfor %}
+                                    </span>                                  
+                                    <svg @click="open = false; document.body.classList.remove('overflow-hidden')"
+                                        class="h-6 w-6 text-black z-50 absolute top-4 right-4 cursor-pointer" x-show="open" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                                <div id="scrollableContentTwo" class="px-4 overflow-y-auto max-h-[400px]">
+                                    {% comment %} Woman Accessories Section {% endcomment %}
+                                    <div class="space-y-4 pb-4">
+                                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                                            <a href="{{ section.settings.woman_accessories_link }}" class="block no-underline text-inherit">
+                                                <div class="sublinkContainer bg-[#F18993] p-5 rounded-t-lg w-full box-border m-0">
+                                                    <a href="{{ section.settings.woman_accessories_link }}"
+                                                        class="text-lg font-bold text-white block">{{
+                                                        section.settings.woman_accessories_text }}</a>
+                                                    <a href="{{ section.settings.woman_accessories_link }}"
+                                                        class="text-sm text-white mt-2.5 leading-normal">
+                                                        {{ section.settings.woman_accessories_description }}
+                                                    </a>
+                                                </div>
+                                            </a>
+                                            <a href="{{ section.settings.woman_accessories_link }}" class="block">
+                                                {% if section.settings.woman_accessories_image == blank %}
+                                                <img src="{{ 'spring-wardrobe-switch-still-life.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                                    class="w-full h-[400px] object-cover object-center block m-0">
+                                                {% else %}
+                                                <img src="{{ section.settings.woman_accessories_image | img_url: 'master' }}" alt="My company logo">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                
+                                        {% comment %} Woman Dresses Section {% endcomment %}
+                                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                                            <a href="{{ section.settings.woman_dresses_link }}" class="block no-underline text-inherit">
+                                                <div class="sublinkContainer bg-[#7F2347] p-5 rounded-t-lg w-full box-border m-0">
+                                                    <a href="{{ section.settings.woman_dresses_link }}" class="text-lg font-bold text-white block">{{
+                                                        section.settings.woman_dresses_text }}</a>
+                                                    <a href="{{ section.settings.woman_dresses_link }}"
+                                                        class="text-sm text-white mt-2.5 leading-normal">
+                                                        {{ section.settings.woman_dresses_description }}
+                                                    </a>
+                                                </div>
+                                            </a>
+                                            <a href="{{ section.settings.woman_dresses_link }}" class="block">
+                                                {% if section.settings.woman_dresses_image == blank %}
+                                                <img src="{{ 'woman-dresses.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                                    class="w-full h-[400px] object-cover object-center block m-0">
+                                                {% else %}
+                                                <img src="{{ section.settings.woman_dresses_image | img_url: 'master' }}" alt="My company logo">
+                                                {% endif %}
+                                            </a>
+                                        </div>
+                                
+                                        {% comment %} Woman Shoes Section {% endcomment %}
+                                        <div class="w-full overflow-hidden rounded-lg shadow-md">
+                                            <a href="{{ section.settings.woman_shoes_link }}" class="block no-underline text-inherit">
+                                                <div class="sublinkContainer bg-[#025B56] p-5 rounded-t-lg w-full box-border m-0">
+                                                    <a href="{{ section.settings.woman_shoes_link }}" class="text-lg font-bold text-white block">{{
+                                                        section.settings.woman_shoes_text }}</a>
+                                                    <a href="{{ section.settings.woman_shoes_link }}" class="text-sm text-white mt-2.5 leading-normal">
+                                                        {{ section.settings.woman_shoes_description }}
+                                                    </a>
+                                                </div>
+                                            </a>
+                                            <a href="{{ section.settings.woman_shoes_link }}" class="block">
+                                                {% if section.settings.woman_shoes_image == blank %}
+                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                                    class="w-full h-[400px] object-cover object-center block m-0">
+                                                {% else %}
+                                                <img src="{{ section.settings.woman_shoes_image | img_url: 'master' }}" alt="My company logo">
+                                                {% endif %}
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -287,49 +413,66 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const messageContainer = document.getElementById('messageContainer');
-        const removeContainer = document.getElementById('removeContainer');
+        const messageContainerTwo = document.getElementById('messageContainerTwo');
+        const removeContainers = document.querySelectorAll('.removeContainer'); // Select all elements with class removeContainer
         const subButtons = document.querySelectorAll('.subButton');
-        const hamburgerButton = document.getElementById('hamburger-icon'); // Target the hamburger button by ID
+        const subButtonsTwo = document.querySelectorAll('.subButtonTwo');
+        const hamburgerButton = document.getElementById('hamburger-icon');
 
-        // Hide messageContainer on page load
-        messageContainer.style.display = 'none'; // Explicitly hide the messageContainer
+        // Hide messageContainer and messageContainerTwo on page load
+        messageContainer.style.display = 'none';
+        messageContainerTwo.style.display = 'none';
 
-        // Show removeContainer and hide messageContainer when hamburger button is clicked
+        // Show removeContainers and hide messageContainer when hamburger button is clicked
         hamburgerButton.addEventListener('click', function () {
-            removeContainer.classList.remove('hidden'); // Show removeContainer
-            messageContainer.style.display = 'none'; // Hide messageContainer explicitly
+            removeContainers.forEach(container => {
+                container.classList.remove('hidden'); // Show all removeContainers
+            });
+            messageContainer.style.display = 'none';
+            messageContainerTwo.style.display = 'none';
         });
 
         // Show messageContainer when subButton is clicked
         subButtons.forEach(button => {
             button.addEventListener('click', function () {
-                removeContainer.classList.add('hidden'); // Hide removeContainer
-                messageContainer.style.display = 'block'; // Show messageContainer explicitly
+                removeContainers.forEach(container => {
+                    container.classList.add('hidden'); // Hide all removeContainers
+                });
+                messageContainer.style.display = 'block'; // Show messageContainer
+                messageContainerTwo.style.display = 'none'; // Ensure messageContainerTwo is hidden
             });
         });
 
-        // Function to handle back arrow click
+        // Show messageContainerTwo when subButtonTwo is clicked
+        subButtonsTwo.forEach(button => {
+            button.addEventListener('click', function () {
+                removeContainers.forEach(container => {
+                    container.classList.add('hidden'); // Hide all removeContainers
+                });
+                messageContainer.style.display = 'none'; // Ensure messageContainer is hidden
+                messageContainerTwo.style.display = 'block'; // Show messageContainerTwo
+            });
+        });
+
+        // Function to handle back arrow click for messageContainer
         function handleBackArrowClick() {
-            if (messageContainer) {
-                messageContainer.style.display = 'none'; // Hide messageContainer
-            }
-            if (removeContainer) {
-                removeContainer.style.display = 'block'; // Show removeContainer
-            }
+            messageContainer.style.display = 'none';
+            messageContainerTwo.style.display = 'none';
+            removeContainers.forEach(container => {
+                container.classList.remove('hidden'); // Show all removeContainers
+            });
         }
 
-        // Function to handle subButton click
-        function handleSubButtonClick() {
-            if (messageContainer) {
-                messageContainer.style.display = 'block'; // Show messageContainer
-            }
-            if (removeContainer) {
-                removeContainer.style.display = 'none'; // Hide removeContainer
-            }
-        }
-
-        // Add event listener for back arrow click
+        // Add event listener for back arrow click for messageContainer
         document.getElementById('backArrow').addEventListener('click', handleBackArrowClick);
+
+        // Add event listener for backArrowTwo to go back to removeContainer
+        document.getElementById('backArrowTwo').addEventListener('click', function() {
+            messageContainerTwo.style.display = 'none'; // Hide messageContainerTwo
+            removeContainers.forEach(container => {
+                container.classList.remove('hidden'); // Show all removeContainers
+            });
+        });
     });
 </script>
 
