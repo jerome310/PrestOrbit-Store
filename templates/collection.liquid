@@ -1,3 +1,4 @@
+{% comment %} Woman Sublinks {% endcomment %}
 {% if collection.handle == 'woman-accessories' %}
 {% render 'woman-accessory-collection' %}
 {% endif %}
@@ -6,4 +7,9 @@
 {% endif %}
 {% if collection.handle == 'woman-shoes-collection' %}
 {% render 'woman-shoes-collection' %}
+{% endif %}
+
+{% comment %} Men Sublinks {% endcomment %}
+{% if collection.handle == 'men-accessories' %}
+{% render 'men-accessory-collection' %}
 {% endif %}
