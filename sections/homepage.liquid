@@ -273,45 +273,45 @@
                                             </a>
                                         </div>
                                 
-                                        {% comment %} Woman Dresses Section {% endcomment %}
+                                        {% comment %} Men Tops Section {% endcomment %}
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
-                                            <a href="{{ section.settings.woman_dresses_link }}" class="block no-underline text-inherit">
+                                            <a href="{{ section.settings.men_tops_link }}" class="block no-underline text-inherit">
                                                 <div class="sublinkContainer bg-[#7F2347] p-5 rounded-t-lg w-full box-border m-0">
-                                                    <a href="{{ section.settings.woman_dresses_link }}" class="text-lg font-bold text-white block">{{
-                                                        section.settings.woman_dresses_text }}</a>
-                                                    <a href="{{ section.settings.woman_dresses_link }}"
+                                                    <a href="{{ section.settings.men_tops_link }}" class="text-lg font-bold text-white block">{{
+                                                        section.settings.men_tops_text }}</a>
+                                                    <a href="{{ section.settings.men_tops_link }}"
                                                         class="text-sm text-white mt-2.5 leading-normal">
-                                                        {{ section.settings.woman_dresses_description }}
+                                                        {{ section.settings.men_tops_description }}
                                                     </a>
                                                 </div>
                                             </a>
-                                            <a href="{{ section.settings.woman_dresses_link }}" class="block">
-                                                {% if section.settings.woman_dresses_image == blank %}
-                                                <img src="{{ 'woman-dresses.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                            <a href="{{ section.settings.men_tops_link }}" class="block">
+                                                {% if section.settings.men_tops_image == blank %}
+                                                <img src="{{ 'men-tops-image.jpg' | asset_url }}" alt="Men Tops"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
                                                 {% else %}
-                                                <img src="{{ section.settings.woman_dresses_image | img_url: 'master' }}" alt="My company logo">
+                                                <img src="{{ section.settings.men_tops_image | img_url: 'master' }}" alt="My company logo">
                                                 {% endif %}
                                             </a>
                                         </div>
                                 
-                                        {% comment %} Woman Shoes Section {% endcomment %}
+                                        {% comment %} Men Bottoms Section {% endcomment %}
                                         <div class="w-full overflow-hidden rounded-lg shadow-md">
-                                            <a href="{{ section.settings.woman_shoes_link }}" class="block no-underline text-inherit">
+                                            <a href="{{ section.settings.men_bottoms_link }}" class="block no-underline text-inherit">
                                                 <div class="sublinkContainer bg-[#025B56] p-5 rounded-t-lg w-full box-border m-0">
-                                                    <a href="{{ section.settings.woman_shoes_link }}" class="text-lg font-bold text-white block">{{
-                                                        section.settings.woman_shoes_text }}</a>
-                                                    <a href="{{ section.settings.woman_shoes_link }}" class="text-sm text-white mt-2.5 leading-normal">
-                                                        {{ section.settings.woman_shoes_description }}
+                                                    <a href="{{ section.settings.men_bottoms_link }}" class="text-lg font-bold text-white block">{{
+                                                        section.settings.men_bottoms_text }}</a>
+                                                    <a href="{{ section.settings.men_bottoms_link }}" class="text-sm text-white mt-2.5 leading-normal">
+                                                        {{ section.settings.men_bottoms_description }}
                                                     </a>
                                                 </div>
                                             </a>
-                                            <a href="{{ section.settings.woman_shoes_link }}" class="block">
-                                                {% if section.settings.woman_shoes_image == blank %}
-                                                <img src="{{ 'woman-shoes.jpg' | asset_url }}" alt="Spring Wardrobe"
+                                            <a href="{{ section.settings.men_bottoms_link }}" class="block">
+                                                {% if section.settings.men_bottoms_image == blank %}
+                                                <img src="{{ 'men-bottom-image.jpg' | asset_url }}" alt="Spring Wardrobe"
                                                     class="w-full h-[400px] object-cover object-center block m-0">
                                                 {% else %}
-                                                <img src="{{ section.settings.woman_shoes_image | img_url: 'master' }}" alt="My company logo">
+                                                <img src="{{ section.settings.men_bottoms_image | img_url: 'master' }}" alt="My company logo">
                                                 {% endif %}
                                             </a>
                                         </div>
@@ -593,7 +593,7 @@
 "type": "text",
 "id": "men_accessories_text",
 "label": "Men Accessories Text",
-"default": "Accessories"
+"default": "Men Accessories"
 },
 {
 "type": "text",
@@ -605,6 +605,52 @@
 "type": "image_picker",
 "id": "men_accessories_image",
 "label": "Men Accessories Image"
+},
+{
+"type": "text",
+"id": "men_tops_link",
+"label": "Men Tops Link",
+"default": "/collections/men-tops" // Default link can be set here
+},
+{
+"type": "text",
+"id": "men_tops_text",
+"label": "Men Tops Text",
+"default": "Men Tops"
+},
+{
+"type": "text",
+"id": "men_tops_description",
+"label": "Men Tops Description",
+"default": "Discover our stylish collection of men's tops, designed to elevate your wardrobe with the perfect blend of comfort and sophistication. Whether you're dressing up for a night out or keeping it casual, our versatile tops will help you express your unique style effortlessly."
+},
+{
+"type": "image_picker",
+"id": "men_tops_image",
+"label": "Men Tops Image"
+},
+{
+"type": "text",
+"id": "men_bottoms_link",
+"label": "Men Bottoms Link",
+"default": "/collections/men-bottoms" // Default link can be set here
+},
+{
+"type": "text",
+"id": "men_bottoms_text",
+"label": "Men Bottoms Text",
+"default": "Men Bottoms"
+},
+{
+"type": "text",
+"id": "men_bottoms_description",
+"label": "Men Bottoms Description",
+"default": "Discover our stylish collection of men's bottoms, designed to provide the perfect blend of comfort and sophistication. From tailored trousers to casual shorts, each piece is crafted to elevate your wardrobe and enhance your everyday style."
+},
+{
+"type": "image_picker",
+"id": "men_bottoms_image",
+"label": "Men Bottoms Image"
 },
 ]
 }
