@@ -19,3 +19,14 @@
 {% if collection.handle == 'men-bottoms' %}
 {% render 'men-bottoms-collection' %}
 {% endif %}
+
+{% comment %} Kid Sublinks {% endcomment %}
+{% if collection.handle == 'kid-accessories' %}
+{% render 'kid-accessory-collection' %}
+{% endif %}
+{% if collection.handle == 'kid-tops' %}
+{% render 'kid-tops-collection' %}
+{% endif %}
+{% if collection.handle == 'kid-bottoms' %}
+{% render 'kid-bottoms-collection' %}
+{% endif %}
